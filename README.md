@@ -1,2 +1,2 @@
 # SMINMOBILIARIA
-Sistema Seminario
+Sistema Seminario 12/07/2017
