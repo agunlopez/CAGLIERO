@@ -24,6 +24,7 @@ import gestores.GestorMovimientos;
 import gestores.GestoresContrato;
 import gestores.GestoresImpuestos;
 import gestores.gestoresCliente.BusquedaPropietario;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.io.IOException;
@@ -48,6 +49,7 @@ import javax.swing.table.TableColumnModel;
 import modelos.ModeloDetalleCuotasContrato;
 import modelos.ModeloTablaImpuesto;
 import modelos.ModeloTablaPagoPropietario;
+import modelos.ModeloTablaRecibosInquilino;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -178,6 +180,9 @@ public class DetallesContrato extends javax.swing.JFrame {
         gar2Email = new javax.swing.JLabel();
         gar2Profesion = new javax.swing.JLabel();
         gar2CUIT = new javax.swing.JLabel();
+        jPanel13 = new javax.swing.JPanel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        tablaRecibosInquilinos = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
         jLabel25 = new javax.swing.JLabel();
@@ -831,7 +836,47 @@ public class DetallesContrato extends javax.swing.JFrame {
                         .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel65, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(gar2CUIT, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel13.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Lista de Recibos del Inquilino", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
+
+        jScrollPane4.setBorder(null);
+
+        tablaRecibosInquilinos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Recibo", "Fecha", "Cuota", "Pagado"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tablaRecibosInquilinos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaRecibosInquilinosMouseClicked(evt);
+            }
+        });
+        jScrollPane4.setViewportView(tablaRecibosInquilinos);
+
+        javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
+        jPanel13.setLayout(jPanel13Layout);
+        jPanel13Layout.setHorizontalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel13Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane4))
+        );
+        jPanel13Layout.setVerticalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -841,15 +886,20 @@ public class DetallesContrato extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(19, 19, 19)
-                .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE)
+                    .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(338, 338, 338))
@@ -1352,7 +1402,7 @@ public class DetallesContrato extends javax.swing.JFrame {
 
         DetallesContrato.tablaDetalle.setDefaultRenderer(Object.class, new RenderLiquidacion()); 
         ArrayList<Cuotas> contCuo2=GestoresContrato.consultarCuotas(Integer.parseInt(lblIdContrato.getText()));
-        ArrayList<Movimiento> pagosPropietario=GestorMovimientos.consultaPagosPropietario(Integer.parseInt(lblIdContrato.getText()));
+        
             ModeloDetalleCuotasContrato mdcc=new ModeloDetalleCuotasContrato(contCuo2);  
    
             DetallesContrato.tablaDetalle.setRowHeight(25);
@@ -1361,21 +1411,22 @@ public class DetallesContrato extends javax.swing.JFrame {
             ((DefaultTableCellRenderer)DetallesContrato.tablaDetalle.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
             tablaDetalle.setModel(mdcc);
             
+            //Cargamos los Recibos del pago al Propietario
+            ArrayList<Movimiento> pagosPropietario=GestorMovimientos.consultaPagosPropietario(Integer.parseInt(lblIdContrato.getText()));
             ModeloTablaPagoPropietario mtpp=new ModeloTablaPagoPropietario(pagosPropietario);
             TablaPagoPropietarios.setModel(mtpp);
-            
+         
+             //Cargamos la tabla de Recibos del Inquilino
+            completarTablaRecibosInquilino();
+                    
+                    
             Inmueble inmDetalle=GestoresContrato.consultaInmuebleDetalle(PrincipalAdministrador.idInmDatos);
             datosContrato=GestoresContrato.consultaDatosContrato(Integer.parseInt(lblIdContrato.getText()));
             Cliente datosPropietario=BusquedaPropietario.busquedaDatos(datosContrato.getInmueble().getPropietario().getId());
             Cliente datosInquilino=BusquedaPropietario.busquedaDatos(datosContrato.getInquilino().getId());
             Cliente datosGarante1=BusquedaPropietario.busquedaDatos(datosContrato.getGarante1().getId());
             Cliente datosGarante2=BusquedaPropietario.busquedaDatos(datosContrato.getGarante2().getId());
-
-            
-            
-                    
-                    
-                    
+   
             lblCalle.setText(inmDetalle.getCalle());
             lblPiso.setText(inmDetalle.getPiso());
             lblDpto.setText(inmDetalle.getDpto());
@@ -1455,18 +1506,14 @@ public class DetallesContrato extends javax.swing.JFrame {
             gar2Profesion.setText(datosGarante2.getProfesion());
             gar2CUIT.setText(Integer.toString(datosGarante2.getCuit()));
             
-            
-           
-            
-            
+ 
             //Cargamos los ID para los Movimientos
             
             idInmuebleMovimiento=inmDetalle.getId();
             idPropietarioMovimiento=datosPropietario.getId();
             idInquilinoMovimiento=datosInquilino.getId();
             
-            
-            
+
             lblPropNombre.setText(datosPropietario.getNombre());
             lblPropApellido.setText(datosPropietario.getApellido());
             lblPropApellidoMat.setText(datosPropietario.getApellidoMaterno());
@@ -1728,6 +1775,16 @@ if(ChcActivarPagos.isSelected()){
 
     }//GEN-LAST:event_ChcActivarPagosActionPerformed
 
+    private void tablaRecibosInquilinosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaRecibosInquilinosMouseClicked
+
+        if(evt.getClickCount()==2){
+            
+            imprimirReciboInquilino();
+        }
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tablaRecibosInquilinosMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -1880,6 +1937,7 @@ if(ChcActivarPagos.isSelected()){
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
+    private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -1891,6 +1949,7 @@ if(ChcActivarPagos.isSelected()){
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel lblCalle;
     private javax.swing.JLabel lblComision;
@@ -1928,6 +1987,7 @@ if(ChcActivarPagos.isSelected()){
     public static javax.swing.JLabel nombreInquilino1;
     public static javax.swing.JTable tablaDetalle;
     public static javax.swing.JTable tablaImpuestos;
+    private javax.swing.JTable tablaRecibosInquilinos;
     // End of variables declaration//GEN-END:variables
 
 
@@ -1940,4 +2000,35 @@ if(ChcActivarPagos.isSelected()){
     public static int numeroCuota;
     public static boolean eliminarImp=true;
 
+    private void imprimirReciboInquilino(){
+        JDialog reciboInq= new JDialog(new JFrame(),"Recibo",true);
+        
+           int row=tablaRecibosInquilinos.getSelectedRow();
+           int recibo=Integer.parseInt(tablaRecibosInquilinos.getValueAt(row, 0).toString());  
+           conexion.ConexionReporte con=new conexion.ConexionReporte();
+         try{
+            
+            Map parametro=new HashMap();
+            
+            parametro.put("Recibo",recibo); 
+            JasperReport reciboInquilino=JasperCompileManager.compileReport("C:\\Users\\Nahuel\\Desktop\\SM Inmobiliaria\\src\\Recibos\\reciboInq.jrxml");           
+            JasperPrint jasperPrint=JasperFillManager.fillReport(reciboInquilino, parametro, con.conexion());
+            
+            
+            reciboInq.setSize(1000,700);
+            reciboInq.setLocationRelativeTo(null);
+            JRViewer jrv=new JRViewer(jasperPrint);
+            reciboInq.getContentPane().add(jrv);
+            reciboInq.setVisible(true);
+        } catch (JRException ex) {
+            Logger.getLogger(PrincipalAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+        }    
+        
+    }
+    
+    private void completarTablaRecibosInquilino(){
+            ArrayList<Movimiento> recibosInquilinos=GestorMovimientos.consultaPagosInquilino(Integer.parseInt(lblIdContrato.getText()));
+            ModeloTablaRecibosInquilino modeloRecibosInq=new ModeloTablaRecibosInquilino(recibosInquilinos);
+            tablaRecibosInquilinos.setModel(modeloRecibosInq);
+    }
 }

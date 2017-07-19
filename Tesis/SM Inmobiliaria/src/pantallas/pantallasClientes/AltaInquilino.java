@@ -473,9 +473,9 @@ public class AltaInquilino extends javax.swing.JFrame {
         }					
         dispose();        
         }catch(NumberFormatException n1){                    
-            JOptionPane.showMessageDialog(new JDialog(),"El DNI no debe superar los 10 digitos");
+            JOptionPane.showMessageDialog(new JDialog(),"Ingrese los datos Validos");
         }catch(NullPointerException n2){
-            JOptionPane.showMessageDialog(new JDialog(),"Ingrese Fecha de Nacimiento ");                                   
+            JOptionPane.showMessageDialog(new JDialog(),"Ingrese los datos Validos");                                   
         }
    } catch (ExcepcionAltaCliente ex) {
        JOptionPane.showMessageDialog(new JDialog(),ex.getMessage());

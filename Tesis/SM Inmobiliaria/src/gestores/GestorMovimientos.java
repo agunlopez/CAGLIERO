@@ -273,8 +273,6 @@ public class GestorMovimientos {
         return listaMovimientos;
     }
        
-    
-     
      
      public static int numeroRecibo() throws SQLException{
          int numeroRecibo=0;
@@ -319,4 +317,43 @@ public class GestorMovimientos {
 	}
          return x;
      }
+     
+     public static ArrayList<Movimiento> consultaPagosInquilino(int idContrato ){
+        ArrayList<Movimiento> listaMovimientos=new ArrayList<Movimiento>();
+        Movimiento mov=null;
+        Cuotas cuotas=null;
+        ResultSet rs=null;
+        String tipo="I";
+        
+        String sql="SELECT movimientos.recibo,movimientos.fecha,movimientos.tipoMov,movimientos.valorMov,movimientos.nroCuota "
+                + "FROM movimientos WHERE movimientos.tipoMov"
+                + " LIKE ? and movimientos.idContrato=?";
+        try{
+           PreparedStatement pst=Conexion.getConexionn().prepareStatement(sql);
+           pst.setString(1, tipo);
+           pst.setInt(2, idContrato);
+           rs=pst.executeQuery();
+           
+           while(rs.next()){
+               mov=new Movimiento();            
+               cuotas=new Cuotas();
+               
+               cuotas.setNroCuota(rs.getInt("movimientos.nroCuota"));
+               mov.setFecha(rs.getString("movimientos.fecha"));
+               mov.setRecibo(rs.getInt("movimientos.recibo"));
+               mov.setValorMovimiento(rs.getDouble("movimientos.valorMov"));
+               mov.setContratoCuota(cuotas);
+               
+                                                     
+                                                        
+               listaMovimientos.add(mov);
+               
+           }
+       }catch (SQLException e) {
+			JOptionPane.showMessageDialog(new JDialog(),"Error al consultar recibos del Inquilino "+e.toString());
+		
+	}
+        return listaMovimientos;
+    }
+ 
 }

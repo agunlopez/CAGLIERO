@@ -56,7 +56,7 @@ public class RecuperarCliente extends javax.swing.JFrame {
         jTextBusquedaCliente = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Lista Inquilinos");
+        setTitle("Lista de Clientes");
         addWindowFocusListener(new java.awt.event.WindowFocusListener() {
             public void windowGainedFocus(java.awt.event.WindowEvent evt) {
                 formWindowGainedFocus(evt);

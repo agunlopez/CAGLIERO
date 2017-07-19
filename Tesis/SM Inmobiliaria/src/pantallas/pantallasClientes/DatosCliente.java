@@ -168,7 +168,7 @@ public class DatosCliente extends javax.swing.JFrame {
         jLabel15.setText("DGI: ");
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel16.setText("CUIT: ");
+        jLabel16.setText("C.U.I.T/C.U.I.L: ");
 
         nombre.setEditable(false);
         nombre.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N

@@ -111,6 +111,7 @@ import static pantallas.Alerta.tablaAlerta;
 import static pantallas.DetallesContrato.lblIdContrato;
 import static pantallas.DetallesContrato.tablaDetalle;
 import static pantallas.DetallesContrato.tablaImpuestos;
+import pantallas.pantallasClientes.AltaCliente;
 
 import pantallas.pantallasClientes.AltaGarante;
 import pantallas.pantallasClientes.AltaInquilino;
@@ -185,6 +186,7 @@ public class PrincipalAdministrador extends javax.swing.JFrame  {
         comboContratos = new javax.swing.JComboBox<>();
         datos = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
+        jLabel13 = new javax.swing.JLabel();
         jScrollPane5 = new javax.swing.JScrollPane();
         tablaContratos = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
@@ -445,6 +447,10 @@ public class PrincipalAdministrador extends javax.swing.JFrame  {
             }
         });
 
+        jLabel13.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel13.setText("Calle:");
+
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
         jPanel11Layout.setHorizontalGroup(
@@ -456,11 +462,13 @@ public class PrincipalAdministrador extends javax.swing.JFrame  {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(comboContratos, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 337, Short.MAX_VALUE)
-                .addComponent(jButton3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 302, Short.MAX_VALUE)
+                .addComponent(jLabel13)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(datos, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19))
+                .addGap(18, 18, 18)
+                .addComponent(jButton3)
+                .addContainerGap())
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -471,7 +479,8 @@ public class PrincipalAdministrador extends javax.swing.JFrame  {
                     .addComponent(jLabel2)
                     .addComponent(comboContratos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(datos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3))
+                    .addComponent(jButton3)
+                    .addComponent(jLabel13))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -1358,30 +1367,42 @@ x=GestoresContrato.consultaIdContrato()+1;
 
     private void btnCrearPropietarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearPropietarioActionPerformed
 
+        AltaCliente altaPropietario=new AltaCliente();
+        altaPropietario.lblTipoCliente.setText("Propietario");
+        altaPropietario.setVisible(true);
+       /**
        AltaPropietario alta=new AltaPropietario();
        alta.setLocationRelativeTo(null);
        alta.pack();
        alta.setVisible(true);
-
+       **/
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCrearPropietarioActionPerformed
 
     private void btnCrearInquilinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearInquilinoActionPerformed
 
+        AltaCliente altaPropietario=new AltaCliente();
+        altaPropietario.lblTipoCliente.setText("Inquilino");
+        altaPropietario.setVisible(true);
+        /**
         AltaInquilino altaInquilino=new AltaInquilino();
         altaInquilino.setLocationRelativeTo(null);
         altaInquilino.pack();
-        altaInquilino.setVisible(true);
+        altaInquilino.setVisible(true);**/
+        
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCrearInquilinoActionPerformed
 
     private void btnCrearGaranteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearGaranteActionPerformed
 
-
+        AltaCliente altaPropietario=new AltaCliente();
+        altaPropietario.lblTipoCliente.setText("Garante");
+        altaPropietario.setVisible(true);
+/**
         AltaGarante altaGarante=new AltaGarante();
         altaGarante.setLocationRelativeTo(null);
         altaGarante.pack();
-        altaGarante.setVisible(true);
+        altaGarante.setVisible(true);**/
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCrearGaranteActionPerformed
 
@@ -1590,6 +1611,7 @@ x=GestoresContrato.consultaIdContrato()+1;
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
  
+        menuBuscarCliente.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F2, 0));
     //Cargamos tabla Inmueble
     listaInmueble=BusquedaInmueble.consultaTabla();
     ModeloTablaInmueble modelo=new ModeloTablaInmueble(listaInmueble){
@@ -2283,6 +2305,9 @@ AltaPropietario alta=new AltaPropietario();
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+
+        RecuperarImpuesto ri=new RecuperarImpuesto();
+        ri.setVisible(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
@@ -2295,7 +2320,7 @@ AltaPropietario alta=new AltaPropietario();
     private void menuManualUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuManualUsuarioActionPerformed
 
          try {
-            File path = new File("C:\\Users\\Nahuel\\Desktop\\SM Inmobiliaria\\src\\Manual\\Manual.pdf");
+            File path = new File("C:\\Users\\Nahuel\\Desktop\\SM Inmobiliaria\\src\\Manual\\ManualSeminario.pdf");
             Desktop.getDesktop().open(path);
         } catch (IOException ex) {
             ex.printStackTrace();
@@ -2366,6 +2391,7 @@ AltaPropietario alta=new AltaPropietario();
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

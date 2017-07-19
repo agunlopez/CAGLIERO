@@ -15,19 +15,20 @@ public class ExcepcionAltaCliente extends Exception {
     public ExcepcionAltaCliente(String msg) {
         super(msg);
     }
-    public static void validarDatos(String nombre, String apellido, String direccion,String dni,String ciudad,String provincia,String cuit,Date fechaNac) throws ExcepcionAltaCliente{
+    public static void validarDatos(String nombre, String apellido, String direccion,String dni,String provincia,String ciudad,String cuit,Date fechaNac) throws ExcepcionAltaCliente{
         if(nombre.equals("")){
             throw new ExcepcionAltaCliente("Ingresar el Nombre del Cliente");
         }
         if(apellido.equals("")){
             throw new ExcepcionAltaCliente("Ingresar Apellido del Cliente");
         }
-        if(ciudad.equals("")){
-            throw new ExcepcionAltaCliente("Ingresar la Ciudad del Cliente");
+        if(provincia.equals("Seleccione Provincia")){
+            throw new ExcepcionAltaCliente("Seleccione la Provincia del Cliente");
         }
-        if(provincia.equals("")){
-            throw new ExcepcionAltaCliente("Ingresar la Provincia del Cliente");
+        if(ciudad.equals("Seleccione Ciudad")){
+            throw new ExcepcionAltaCliente("Seleccione la Ciudad del Cliente");
         }
+        
         if(direccion.equals("")){
             throw new ExcepcionAltaCliente("Ingresar el Direccion del Cliente");
         }

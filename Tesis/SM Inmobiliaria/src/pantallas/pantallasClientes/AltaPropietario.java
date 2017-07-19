@@ -423,6 +423,7 @@ public class AltaPropietario extends javax.swing.JFrame {
                 propietario.setDireccion(direccion.getText());
                 propietario.setLocalidad(ciudad.getText());
                 propietario.setProvincia(provincia.getText());
+                
                 if(telefono.getText().isEmpty() ){
                     propietario.setTel(0);
                 }else{
@@ -432,12 +433,13 @@ public class AltaPropietario extends javax.swing.JFrame {
                     propietario.setCelular(0);
                 }else{
                     propietario.setCelular(Integer.parseInt(celular.getText()));
-                }										
+                } 
                 if(cuit.getText().isEmpty()){
                     propietario.setCuit(0);
                 }else{
                     propietario.setCuit(Integer.parseInt(cuit.getText())); 
-                }
+                } 
+                
                 propietario.setDgi((String) comboDgi.getSelectedItem());
                 propietario.setCorreo(correo.getText());
                 propietario.setTipo("Propietario");										
@@ -454,11 +456,14 @@ public class AltaPropietario extends javax.swing.JFrame {
                     int e=GestorEventos.AltaEvento(evento);
                 }					
                 dispose();
-            }catch(NumberFormatException n1){
-                JOptionPane.showMessageDialog(new JDialog(),"Ingrese los datos Validos");
-            }catch(NullPointerException n2){
-                JOptionPane.showMessageDialog(new JDialog(),"Ingrese Fecha de Nacimiento");                                    
-            } catch (IOException ex) {
+            }
+            catch(NumberFormatException n1){
+                JOptionPane.showMessageDialog(new JDialog(),"Ingrese los datos Validos"+n1.toString());
+            }
+            catch(NullPointerException n2){
+                JOptionPane.showMessageDialog(new JDialog(),"Ingrese los datos Validos"+n2.toString());                                    
+            } 
+            catch (IOException ex) {
                 Logger.getLogger(AltaPropietario.class.getName()).log(Level.SEVERE, null, ex);
             }				
         } catch (ExcepcionAltaCliente ex) {

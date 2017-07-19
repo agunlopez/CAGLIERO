@@ -978,6 +978,9 @@ if(seleccion==JFileChooser.APPROVE_OPTION){
 
     private void btnEliminarInmuebleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarInmuebleActionPerformed
 
+        if(estado.getText().equals("Disponible")){
+            
+        
         int r=GestorModificarInmueble.ModificarEstadoInhabilitado(Integer.parseInt(etiquetaId.getText()));
         Inmueble inm=new Inmueble();
         inm.setCalle(calle.getText());
@@ -996,6 +999,10 @@ if(seleccion==JFileChooser.APPROVE_OPTION){
                 Logger.getLogger(DatosInmueble.class.getName()).log(Level.SEVERE, null, ex);
             }
             this.dispose();
+        }
+        }else{
+                       JOptionPane.showMessageDialog(new JDialog(),"No se puede eliminar un inmueble que este vinculado con un contrato");
+ 
         }
 
     }//GEN-LAST:event_btnEliminarInmuebleActionPerformed
