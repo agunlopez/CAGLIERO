@@ -27,7 +27,7 @@ public class fechas {
              int startMes = (startCalendar.get(Calendar.YEAR) * 12) + startCalendar.get(Calendar.MONTH);
              int endMes = (endCalendar.get(Calendar.YEAR) * 12) + endCalendar.get(Calendar.MONTH);
              //Diferencia en meses entre las dos fechas
-             int diffMonth = endMes - startMes;
+             int diffMonth = (endMes - startMes)+1;
              return diffMonth;
          } catch (Exception e) {
              return 0;

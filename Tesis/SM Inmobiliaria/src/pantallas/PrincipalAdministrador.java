@@ -112,10 +112,6 @@ import static pantallas.DetallesContrato.lblIdContrato;
 import static pantallas.DetallesContrato.tablaDetalle;
 import static pantallas.DetallesContrato.tablaImpuestos;
 import pantallas.pantallasClientes.AltaCliente;
-
-import pantallas.pantallasClientes.AltaGarante;
-import pantallas.pantallasClientes.AltaInquilino;
-import pantallas.pantallasClientes.AltaPropietario;
 import pantallas.pantallasClientes.DatosCliente;
 import pantallas.pantallasClientes.ListaBusquedaContrato;
 import pantallas.pantallasClientes.PantallaBusquedaCliente;
@@ -1370,12 +1366,7 @@ x=GestoresContrato.consultaIdContrato()+1;
         AltaCliente altaPropietario=new AltaCliente();
         altaPropietario.lblTipoCliente.setText("Propietario");
         altaPropietario.setVisible(true);
-       /**
-       AltaPropietario alta=new AltaPropietario();
-       alta.setLocationRelativeTo(null);
-       alta.pack();
-       alta.setVisible(true);
-       **/
+
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCrearPropietarioActionPerformed
 
@@ -1384,11 +1375,7 @@ x=GestoresContrato.consultaIdContrato()+1;
         AltaCliente altaPropietario=new AltaCliente();
         altaPropietario.lblTipoCliente.setText("Inquilino");
         altaPropietario.setVisible(true);
-        /**
-        AltaInquilino altaInquilino=new AltaInquilino();
-        altaInquilino.setLocationRelativeTo(null);
-        altaInquilino.pack();
-        altaInquilino.setVisible(true);**/
+
         
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCrearInquilinoActionPerformed
@@ -1398,11 +1385,7 @@ x=GestoresContrato.consultaIdContrato()+1;
         AltaCliente altaPropietario=new AltaCliente();
         altaPropietario.lblTipoCliente.setText("Garante");
         altaPropietario.setVisible(true);
-/**
-        AltaGarante altaGarante=new AltaGarante();
-        altaGarante.setLocationRelativeTo(null);
-        altaGarante.pack();
-        altaGarante.setVisible(true);**/
+
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCrearGaranteActionPerformed
 
@@ -2140,30 +2123,27 @@ x=GestoresContrato.consultaIdContrato()+1;
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-
-AltaPropietario alta=new AltaPropietario();
-       alta.setLocationRelativeTo(null);
-       alta.pack();
-       alta.setVisible(true);
+AltaCliente altaPropietario=new AltaCliente();
+        altaPropietario.lblTipoCliente.setText("Propietario");
+        altaPropietario.setVisible(true);
+        
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
 
-  AltaInquilino altaInquilino=new AltaInquilino();
-        altaInquilino.setLocationRelativeTo(null);
-        altaInquilino.pack();
-        altaInquilino.setVisible(true);
+        AltaCliente altaPropietario=new AltaCliente();
+        altaPropietario.lblTipoCliente.setText("Inquilino");
+        altaPropietario.setVisible(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+AltaCliente altaPropietario=new AltaCliente();
+        altaPropietario.lblTipoCliente.setText("Garante");
+        altaPropietario.setVisible(true);
 
- AltaGarante altaGarante=new AltaGarante();
-        altaGarante.setLocationRelativeTo(null);
-        altaGarante.pack();
-        altaGarante.setVisible(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
