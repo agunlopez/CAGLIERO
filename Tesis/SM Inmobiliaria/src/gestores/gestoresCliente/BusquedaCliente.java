@@ -45,9 +45,9 @@ public class BusquedaCliente {
 				prop.setApellidoMaterno(rs.getString("apellidoMaterno"));
 				prop.setNombre(rs.getString("nombre"));
 				prop.setDni(Integer.parseInt(rs.getString("dni")));;
-				prop.setCuit(Integer.parseInt(rs.getString("cuit")));
+				prop.setCuit(rs.getString("cuit"));
 				prop.setCorreo(rs.getString("correo"));
-				prop.setTel(Integer.parseInt(rs.getString("telefono")));
+				prop.setTel(rs.getString("telefono"));
 				prop.setFechaNac(rs.getString("fechaNacimiento"));
 				prop.setEstadoCivil(rs.getString("estadoCivil"));
 				prop.setProfesion(rs.getString("profesion"));
@@ -56,7 +56,7 @@ public class BusquedaCliente {
 				prop.setProvincia(rs.getString("provincia"));
 				prop.setDgi(rs.getString("dgi"));
                                 prop.setTipo(rs.getString("tipo"));
-				prop.setCelular(Integer.parseInt(rs.getString("celular")));
+				prop.setCelular(rs.getString("celular"));
                                 
                                if(rs.getBoolean("habilitado")==true){
                                           listaP.add(prop);  

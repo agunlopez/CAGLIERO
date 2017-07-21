@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-07-2017 a las 21:44:41
+-- Tiempo de generación: 21-07-2017 a las 21:33:26
 -- Versión del servidor: 10.1.16-MariaDB
 -- Versión de PHP: 5.6.24
 
@@ -32,9 +32,9 @@ CREATE TABLE `cliente` (
   `apellido` varchar(50) NOT NULL,
   `apellidoMaterno` varchar(50) NOT NULL,
   `dni` int(10) NOT NULL,
-  `cuit` int(12) DEFAULT NULL,
+  `cuit` varchar(30) DEFAULT NULL,
   `correo` varchar(50) NOT NULL,
-  `telefono` int(20) DEFAULT NULL,
+  `telefono` varchar(30) DEFAULT NULL,
   `fechaNacimiento` varchar(10) NOT NULL,
   `estadoCivil` varchar(20) NOT NULL,
   `profesion` varchar(30) NOT NULL,
@@ -42,7 +42,7 @@ CREATE TABLE `cliente` (
   `ciudad` varchar(30) NOT NULL,
   `provincia` varchar(30) NOT NULL,
   `dgi` varchar(30) NOT NULL,
-  `celular` int(20) DEFAULT NULL,
+  `celular` varchar(30) DEFAULT NULL,
   `tipo` varchar(20) NOT NULL,
   `habilitado` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -52,51 +52,55 @@ CREATE TABLE `cliente` (
 --
 
 INSERT INTO `cliente` (`idCliente`, `nombre`, `apellido`, `apellidoMaterno`, `dni`, `cuit`, `correo`, `telefono`, `fechaNacimiento`, `estadoCivil`, `profesion`, `domicilio`, `ciudad`, `provincia`, `dgi`, `celular`, `tipo`, `habilitado`) VALUES
-(3, 'Agustin', 'Lopez', '', 36521448, 0, '', 213, '15/0/1992', 'Soltero', '', 'Guemes 568', 'Santa Fe', 'Santa Fe', 'Consumidor Final', 0, 'Garante', 1),
-(4, 'Ruben', 'Lopez', '', 25444784, 0, '', 0, '15/7/1998', 'Casado', '', 'Guemes 886', 'Santa Fe', 'Santa Fe', 'Consumidor Final', 0, 'Garante', 1),
-(5, 'Fernando', 'Mensching ', 'Silvestre', 35787954, 64564589, 'asdasgasg', 123216544, '17/4/1993', 'Soltero', 'Cajero Alevar', 'San Martin 1880', 'Tostado', 'Santa Fe', 'Consumidor Final', 21321654, 'Propietario', 1),
-(6, 'Nahuel', 'Oggioni', 'Bonino', 37404941, 321565465, 'bgasofasfh', 12313121, '26/4/1994', 'Soltero', 'Travesti', 'San Martin 1660', 'Tostado', 'Santa Fe', 'Consumidor Final', 12312315, 'Inquilino', 1),
-(7, 'Hernan', 'Mensching', 'Silvestre', 38774567, 0, '', 0, '15/6/1995', 'Soltero', '', 'San Martin 1880', 'Tostado', 'Santa Fe', 'Consumidor Final', 0, 'Propietario', 1),
-(8, 'Pepito', 'Perez', 'Juarez', 210215215, 0, '', 0, '15/7/1985', 'Casado', '', 'Catamarca 2577', 'Tostado', 'Santa Fe', 'Consumidor Final', 0, 'Propietario', 1),
-(19, 'Federico', 'Anselmo', '', 385654, 0, '', 0, '15/7/1994', '', '', 'CasiGol', 'Tostado', 'Santa Fe', 'Consumidor Final', 0, 'Propietario', 1),
-(20, 'Paolo', 'Marini', '', 511225442, 0, '', 0, '25/7/1989', '', '', 'Junin 1244', 'Tostado', 'Santa Fe', 'Consumidor Final', 0, 'Garante', 1),
-(21, 'Candela', 'Oggioni', '', 40255789, 0, '', 0, '24/5/1998', '', '', 'jose hernadnez 1112', 'Sarmiento', 'Santa Fe', 'Consumidor Final', 0, 'Propietario', 1),
-(22, 'Lucas', 'Barzaghi', '', 34545644, 0, '', 0, '12/7/1996', 'Soltero', '', 'Jose Lamy 1554', 'Progreso', 'Santa Fe', 'Consumidor Final', 0, 'Inquilino', 1),
-(23, 'Gustavo', 'Derrier', '', 25874196, 0, '', 0, '15/8/265', 'Casado', '', 'Icop Aula 22', 'Santa Fe', 'Santa Fe', 'Consumidor Final', 0, 'Inquilino', 1),
-(24, 'Ronald', 'Quinteros', '', 4246789, 0, '', 0, '15/6/1980', '', '', 'Crespo 1667', 'Santa Fe', 'Santa Fe', 'Consumidor Final', 0, 'Propietario', 1),
-(25, 'Maxilimiliano', 'Lugo', '', 644521666, 0, '', 0, '14/9/1982', '', '', 'Saavedra 1887', 'Tostado', 'Santa Fe', 'Consumidor Final', 0, 'Inquilino', 1),
-(26, 'Robertino', 'Insua', 'Lopez', 5156156, 0, '', 0, '8/10/198', '', '', 'Belgrano 1554', 'Santa Fe', 'Santa Fe', 'Consumidor Final', 0, 'Garante', 1),
-(27, 'Kampmann', 'Doris', '', 18520258, 0, '', 0, '1/1/1966', 'Casada', '', 'Guemes', 'Santa Fe', 'Santa Fe', 'Consumidor Final', 0, 'Garante', 1),
-(28, 'Nereo', 'Fernandez', '', 365852012, 0, '', 0, '18/5/1961', '', '', 'Salta 4585', 'Santa Fe', 'Santa Fe', 'Consumidor Final', 0, 'Garante', 1),
-(29, 'Diego', 'Villar', 'Pipa', 25485632, 0, '', 0, '25/1/1965', 'Casado', '', 'San martin 4587', 'Santa Fe', 'Santa Fe', 'Consumidor Final', 0, 'Garante', 1),
-(30, 'Mauro', 'Pitton', '', 45612895, 0, '', 0, '15/8/1994', '', '', 'lamadri', 'Santa Fe', 'Santa Fe', 'Consumidor Final', 0, 'Garante', 1),
-(32, 'Juan Roman ', 'Riquelme', 'Dios', 15245587, 0, '', 0, '15/8/1978', '', '', 'Magica 1548', 'Don Torcuato', 'Buenos Aires', 'Consumidor Final', 0, 'Garante', 1),
-(33, 'Homero', 'Simpson', '', 89898989, 0, '', 0, '1/6/2000', '', '', '', 'Tostado', 'Santa Fe', 'Consumidor Final', 0, 'Propietario', 1),
-(34, 'Pepe', 'Castro', '', 18421215, 0, '', 0, '1/6/2017', '', '', 'Pujato 1887', 'Santa Fe', 'Santa Fe', 'Consumidor Final', 0, 'Propietario', 1),
-(35, 'Jose', 'Ayala', '', 12455687, 0, '', 0, '4/6/2017', '', '', 'Urquiza 1544', 'Tostado', 'Santa Fe', 'Consumidor Final', 0, 'Propietario', 1),
-(36, 'Pitu', 'Cejas', '', 1234567897, 0, '', 0, '1/6/2017', '', '', 'Necochea 1551', 'Tostado', 'Santa Fe', 'Consumidor Final', 0, 'Inquilino', 1),
-(37, 'Rodrigo', 'Salinas', '', 1234567777, 0, '', 0, '1/6/2017', '', '', 'Saavedra 188', 'Tostado', 'Santa Fe', 'Consumidor Final', 0, 'Garante', 1),
-(38, 'Jazmin', 'Lopez', '', 37404942, 0, '', 0, '15/4/1998', '', '', 'Cordoba 1331', 'Santa Fe', 'Santa Fe', 'Consumidor Final', 0, 'Propietario', 1),
-(39, 'Prueba', 'Prueba', '', 37331832, 0, '', 0, '1/7/2017', '', '', 'Calle de prueba', 'Tostado', 'Santa Fe', 'Consumidor Final', 0, 'Propietario', 1),
-(40, 'Pata', 'Rondin', '', 10254787, 0, '', 0, '15/4/1987', '', '', 'Savalla 2300', 'Santa Fe', 'Santa Fe', 'Responsable Inscripto', 0, 'Propietario', 1),
-(41, 'Jose', 'Velez', '', 37404777, 0, '', 0, '26/5/1992', '', '', 'Alma Fuerte 1221', 'Parana', 'Santa Fe', 'Consumidor Final', 0, 'Propietario', 1),
-(42, 'Santiago', 'Gomez', '', 37404943, 0, '', 0, '26/12/1998', '', '', 'Galvez 2787', 'Tostado', 'Santa Fe', 'Consumidor Final', 0, 'Propietario', 1),
-(43, 'asdasd', 'asdasd', '', 5456465, 0, '', 0, '1/7/1999', '', '', 'asdasdas', 'Tostado', 'Santa Fe', 'Consumidor Final', 0, 'Inquilino', 1),
-(44, 'asdasd', 'asdasd', '', 12345678, 0, '', 0, '1/7/1989', '', '', 'asdasdas', 'Tostado', 'Santa Fe', 'Consumidor Final', 0, 'Inquilino', 1),
-(45, 'Jose', 'Juanes', '', 37404948, 0, '', 0, '18/7/1999', '', '', 'Termas 1878', 'Rosario', 'Santa Fe', 'Consumidor Final', 0, 'Propietario', 1),
-(46, 'Jorge Alejandro', 'Perusini', '', 17516044, 0, '', 0, '14/12/2000', '', '', 'San Martin 1551', 'Santa Fe', 'Santa Fe', 'Consumidor Final', 0, 'Propietario', 1),
-(47, 'pdwopo', 'ewewewew', '', 18144746, 0, '', 0, '12/12/1998', '', '', 'ewwew', 'Tostado', 'Santa Fe', 'Consumidor Final', 0, 'Propietario', 1),
-(48, 'kjashjfsaf', 'kjasdjhafkj', '', 10200300, 0, '', 0, '10/5/1878', '', '', 'jafjfakjaf', 'Tostado', 'Santa Fe', 'Consumidor Final', 0, 'Propietario', 1),
-(49, 'hasdkjasdkj', 'kjasdkjaskj', '', 37405941, 0, '', 0, '10/8/1998', '', '', 'kjasdkjaskjasd', 'Tostado', 'Santa Fe', 'Consumidor Final', 0, 'Propietario', 1),
-(50, 'sagasdd', 'dashasdjhas', '', 37405945, 0, '', 0, '10/7/1977', '', '', 'hasdhjdsag', 'Tostado', 'Santa Fe', 'Consumidor Final', 0, 'Propietario', 1),
-(51, 'asdasd', 'asdasd', '', 10200301, 0, '', 0, '1/7/1993', '', '', 'asdasd', 'Tostado', 'Santa Fe', 'Consumidor Final', 0, 'Propietario', 1),
-(52, 'asdasd', 'asdasd', '', 37400400, 0, '', 0, '26/5/199', '', '', 'asdasd 1231', 'Tostado', 'Santa Fe', 'Consumidor Final', 0, 'Propietario', 1),
-(53, 'Nahuel', 'Bonino', '', 37400800, 0, '', 0, '1/7/1990', '', '', 'Jose Hern 1113', 'Sarmiento', 'Santa Fe', 'Consumidor Final', 0, 'Propietario', 1),
-(54, 'Nahuel', 'Zarate', '', 20101020, 0, '', 0, '10/2/1989', '', '', 'sadasd ', 'Cabal', '22 - Santa Fe', 'Consumidor Final', 0, 'Propietario', 1),
-(55, 'asdasd', 'asdasd', '', 12312345, 0, '', 0, '10/10/1810', '', '', 'asdasd', 'Seleccione Ciudad', 'SeleccioneProvincia', 'Consumidor Final', 0, 'Propietario', 1),
-(56, 'asdasd', 'asdasd', '', 14725836, 0, '', 0, '10/10/1010', '', '', 'asdasd', 'Achiras', '7 - Córdoba', 'Consumidor Final', 0, 'Propietario', 1),
-(57, 'asdasd', 'asdasd', '', 10102020, 0, '', 0, '10/10/1010', '', '', 'asdas', 'Seleccione Ciudad', 'SeleccioneProvincia', 'Consumidor Final', 0, 'Propietario', 1),
-(58, 'Prueba', 'Garante', '', 20545686, 0, '', 0, '10/10/1010', '', '', 'dsasd 54', 'Sarmiento', 'Santa Fe', 'Consumidor Final', 0, 'Garante', 1);
+(3, 'Agustin', 'Lopez', '', 36521448, '0', '', '213', '15/0/1992', 'Soltero', '', 'Guemes 568', 'Santa Fe', 'Santa Fe', 'Consumidor Final', '0', 'Garante', 1),
+(4, 'Ruben', 'Lopez', '', 25444784, '0', '', '0', '15/7/1998', 'Casado', '', 'Guemes 886', 'Santa Fe', 'Santa Fe', 'Consumidor Final', '0', 'Garante', 1),
+(5, 'Fernando', 'Mensching ', 'Silvestre', 35787954, '64564589', 'asdasgasg', '123216544', '17/4/1993', 'Soltero', 'Cajero Alevar', 'San Martin 1880', 'Tostado', 'Santa Fe', 'Consumidor Final', '21321654', 'Propietario', 1),
+(6, 'Nahuel', 'Oggioni', 'Bonino', 37404941, '20-37404941-1', 'bgasofasfh', '03497-497287', '26/4/1994', 'Soltero', 'Travesti', 'San Martin 1660', 'Tostado', 'Santa Fe', 'Consumidor Final', '03497-15402873', 'Inquilino', 1),
+(7, 'Hernan', 'Mensching', 'Silvestre', 38774567, '0', '', '0', '15/6/1995', 'Soltero', '', 'San Martin 1880', 'Tostado', 'Santa Fe', 'Consumidor Final', '0', 'Propietario', 1),
+(8, 'Pepito', 'Perez', 'Juarez', 210215215, '0', '', '0', '15/7/1985', 'Casado', '', 'Catamarca 2577', 'Tostado', 'Santa Fe', 'Consumidor Final', '0', 'Propietario', 1),
+(19, 'Federico', 'Anselmo', '', 385654, '0', '', '0', '15/7/1994', '', '', 'CasiGol', 'Tostado', 'Santa Fe', 'Consumidor Final', '0', 'Propietario', 1),
+(20, 'Paolo', 'Marini', '', 511225442, '0', '', '0', '25/7/1989', '', '', 'Junin 1244', 'Tostado', 'Santa Fe', 'Consumidor Final', '0', 'Garante', 1),
+(21, 'Candela', 'Oggioni', '', 40255789, '0', '', '0', '24/5/1998', '', '', 'jose hernadnez 1112', 'Sarmiento', 'Santa Fe', 'Consumidor Final', '0', 'Propietario', 1),
+(22, 'Lucas', 'Barzaghi', '', 34545644, '0', '', '0', '12/7/1996', 'Soltero', '', 'Jose Lamy 1554', 'Progreso', 'Santa Fe', 'Consumidor Final', '0', 'Inquilino', 1),
+(23, 'Gustavo', 'Derrier', '', 25874196, '0', '', '0', '15/8/265', 'Casado', '', 'Icop Aula 22', 'Santa Fe', 'Santa Fe', 'Consumidor Final', '0', 'Inquilino', 1),
+(24, 'Ronald', 'Quinteros', '', 4246789, '0', '', '0', '15/6/1980', '', '', 'Crespo 1667', 'Santa Fe', 'Santa Fe', 'Consumidor Final', '0', 'Propietario', 1),
+(25, 'Maxilimiliano', 'Lugo', '', 644521666, '0', '', '0', '14/9/1982', '', '', 'Saavedra 1887', 'Tostado', 'Santa Fe', 'Consumidor Final', '0', 'Inquilino', 1),
+(26, 'Robertino', 'Insua', 'Lopez', 5156156, '0', '', '0', '8/10/198', '', '', 'Belgrano 1554', 'Santa Fe', 'Santa Fe', 'Consumidor Final', '0', 'Garante', 1),
+(27, 'Kampmann', 'Doris', '', 18520258, '0', '', '0', '1/1/1966', 'Casada', '', 'Guemes', 'Santa Fe', 'Santa Fe', 'Consumidor Final', '0', 'Garante', 1),
+(28, 'Nereo', 'Fernandez', '', 365852012, '0', '', '0', '18/5/1961', '', '', 'Salta 4585', 'Santa Fe', 'Santa Fe', 'Consumidor Final', '0', 'Garante', 1),
+(29, 'Diego', 'Villar', 'Pipa', 25485632, '0', '', '0', '25/1/1965', 'Casado', '', 'San martin 4587', 'Santa Fe', 'Santa Fe', 'Consumidor Final', '0', 'Garante', 1),
+(30, 'Mauro', 'Pitton', '', 45612895, '0', '', '0', '15/8/1994', '', '', 'lamadri', 'Santa Fe', 'Santa Fe', 'Consumidor Final', '0', 'Garante', 1),
+(32, 'Juan Roman ', 'Riquelme', 'Dios', 15245587, '0', '', '0', '15/8/1978', '', '', 'Magica 1548', 'Don Torcuato', 'Buenos Aires', 'Consumidor Final', '0', 'Garante', 1),
+(33, 'Homero', 'Simpson', '', 89898989, '0', '', '0', '1/6/2000', '', '', '', 'Tostado', 'Santa Fe', 'Consumidor Final', '0', 'Propietario', 1),
+(34, 'Pepe', 'Castro', '', 18421215, '0', '', '0', '1/6/2017', '', '', 'Pujato 1887', 'Santa Fe', 'Santa Fe', 'Consumidor Final', '0', 'Propietario', 1),
+(35, 'Jose', 'Ayala', '', 12455687, '0', '', '0', '4/6/2017', '', '', 'Urquiza 1544', 'Tostado', 'Santa Fe', 'Consumidor Final', '0', 'Propietario', 1),
+(36, 'Pitu', 'Cejas', '', 1234567897, '0', '', '0', '1/6/2017', '', '', 'Necochea 1551', 'Tostado', 'Santa Fe', 'Consumidor Final', '0', 'Inquilino', 1),
+(37, 'Rodrigo', 'Salinas', '', 1234567777, '0', '', '0', '1/6/2017', '', '', 'Saavedra 188', 'Tostado', 'Santa Fe', 'Consumidor Final', '0', 'Garante', 1),
+(38, 'Jazmin', 'Lopez', '', 37404942, '0', '', '0', '15/4/1998', '', '', 'Cordoba 1331', 'Santa Fe', 'Santa Fe', 'Consumidor Final', '0', 'Propietario', 1),
+(39, 'Prueba', 'Prueba', '', 37331832, '0', '', '0', '1/7/2017', '', '', 'Calle de prueba', 'Tostado', 'Santa Fe', 'Consumidor Final', '0', 'Propietario', 1),
+(40, 'Pata', 'Rondin', '', 10254787, '0', '', '0', '15/4/1987', '', '', 'Savalla 2300', 'Santa Fe', 'Santa Fe', 'Responsable Inscripto', '0', 'Propietario', 1),
+(41, 'Jose', 'Velez', '', 37404777, '0', '', '0', '26/5/1992', '', '', 'Alma Fuerte 1221', 'Parana', 'Santa Fe', 'Consumidor Final', '0', 'Propietario', 1),
+(42, 'Santiago', 'Gomez', '', 37404943, '0', '', '0', '26/12/1998', '', '', 'Galvez 2787', 'Tostado', 'Santa Fe', 'Consumidor Final', '0', 'Propietario', 1),
+(43, 'asdasd', 'asdasd', '', 5456465, '0', '', '0', '1/7/1999', '', '', 'asdasdas', 'Tostado', 'Santa Fe', 'Consumidor Final', '0', 'Inquilino', 1),
+(44, 'asdasd', 'asdasd', '', 12345678, '0', '', '0', '1/7/1989', '', '', 'asdasdas', 'Tostado', 'Santa Fe', 'Consumidor Final', '0', 'Inquilino', 1),
+(45, 'Jose', 'Juanes', '', 37404948, '0', '', '0', '18/7/1999', '', '', 'Termas 1878', 'Rosario', 'Santa Fe', 'Consumidor Final', '0', 'Propietario', 1),
+(46, 'Jorge Alejandro', 'Perusini', '', 17516044, '0', '', '0', '14/12/2000', '', '', 'San Martin 1551', 'Santa Fe', 'Santa Fe', 'Consumidor Final', '0', 'Propietario', 1),
+(47, 'pdwopo', 'ewewewew', '', 18144746, '0', '', '0', '12/12/1998', '', '', 'ewwew', 'Tostado', 'Santa Fe', 'Consumidor Final', '0', 'Propietario', 1),
+(48, 'kjashjfsaf', 'kjasdjhafkj', '', 10200300, '0', '', '0', '10/5/1878', '', '', 'jafjfakjaf', 'Tostado', 'Santa Fe', 'Consumidor Final', '0', 'Propietario', 1),
+(49, 'hasdkjasdkj', 'kjasdkjaskj', '', 37405941, '0', '', '0', '10/8/1998', '', '', 'kjasdkjaskjasd', 'Tostado', 'Santa Fe', 'Consumidor Final', '0', 'Propietario', 1),
+(50, 'sagasdd', 'dashasdjhas', '', 37405945, '0', '', '0', '10/7/1977', '', '', 'hasdhjdsag', 'Tostado', 'Santa Fe', 'Consumidor Final', '0', 'Propietario', 1),
+(51, 'asdasd', 'asdasd', '', 10200301, '0', '', '0', '1/7/1993', '', '', 'asdasd', 'Tostado', 'Santa Fe', 'Consumidor Final', '0', 'Propietario', 1),
+(52, 'asdasd', 'asdasd', '', 37400400, '0', '', '0', '26/5/199', '', '', 'asdasd 1231', 'Tostado', 'Santa Fe', 'Consumidor Final', '0', 'Propietario', 1),
+(53, 'Nahuel', 'Bonino', '', 37400800, '0', '', '0', '1/7/1990', '', '', 'Jose Hern 1113', 'Sarmiento', 'Santa Fe', 'Consumidor Final', '0', 'Propietario', 1),
+(54, 'Nahuel', 'Zarate', '', 20101020, '0', '', '0', '10/2/1989', '', '', 'sadasd ', 'Cabal', '22 - Santa Fe', 'Consumidor Final', '0', 'Propietario', 1),
+(55, 'asdasd', 'asdasd', '', 12312345, '0', '', '0', '10/10/1810', '', '', 'asdasd', 'Seleccione Ciudad', 'SeleccioneProvincia', 'Consumidor Final', '0', 'Propietario', 1),
+(56, 'asdasd', 'asdasd', '', 14725836, '0', '', '0', '10/10/1010', '', '', 'asdasd', 'Achiras', '7 - Córdoba', 'Consumidor Final', '0', 'Propietario', 1),
+(57, 'asdasd', 'asdasd', '', 10102020, '0', '', '0', '10/10/1010', '', '', 'asdas', 'Seleccione Ciudad', 'SeleccioneProvincia', 'Consumidor Final', '0', 'Propietario', 1),
+(58, 'Prueba', 'Garante', '', 20545686, '0', '', '0', '10/10/1010', '', '', 'dsasd 54', 'Sarmiento', 'Santa Fe', 'Consumidor Final', '0', 'Garante', 1),
+(59, 'asdasd', 'asdasd', '', 50050066, '50050066', '', '0', '15/7/1989', '', '', 'asdasd', 'Barranqueras', 'Chaco', 'Consumidor Final', '0', 'Inquilino', 1),
+(60, 'asdasdasd', 'asdasdasd', '', 98765432, '0', '', '0', '4/7/1989', '', '', 'asdasd', 'Barranqueras', 'Chaco', 'Consumidor Final', '0', 'Propietario', 1),
+(61, 'asdasd', 'asdasd', '', 36989654, '465465', '', '0', '15/9/1979', '', '', 'asdasd', 'Buen Pasto', 'Chubut', 'Consumidor Final', '0', 'Propietario', 1),
+(62, 'hjasdhgasdhg', 'sadjhasdds', '', 20548978, '20-20548978-2', '', ' ', '10/10/1970', '', '', 'hgasdhasd', '25 de Mayo', 'Buenos Aires', 'Consumidor Final', ' ', 'Propietario', 1);
 
 -- --------------------------------------------------------
 
@@ -1044,7 +1048,10 @@ INSERT INTO `eventos` (`fecha`, `idUsuario`, `descipcion`, `tipo`) VALUES
 ('18/07/2017 - 19:27', 1, 'Se modifico el Cliente Jorge Alejandro Perusini ', 'CLIENTE'),
 ('18/07/2017 - 19:28', 1, 'Se agregego el Propietario pdwopo ewewewew ', 'CLIENTE'),
 ('18/07/2017 - 20:41', 1, 'Se agregego el Propietario asdasd asdasd ', 'CLIENTE'),
-('19/07/2017 - 16:41', 1, 'Se agregego el Garante Prueba Garante ', 'CLIENTE');
+('19/07/2017 - 16:41', 1, 'Se agregego el Garante Prueba Garante ', 'CLIENTE'),
+('19/07/2017 - 20:58', 1, 'Se agregego el Inquilino asdasd asdasd ', 'CLIENTE'),
+('21/07/2017 - 16:12', 1, 'Se agregego el Propietario hjasdhgasdhg sadjhasdds ', 'CLIENTE'),
+('21/07/2017 - 16:30', 1, 'Se modifico el Cliente Nahuel Oggioni Bonino', 'CLIENTE');
 
 -- --------------------------------------------------------
 

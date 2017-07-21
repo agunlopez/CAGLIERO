@@ -1474,11 +1474,11 @@ public class DetallesContrato extends javax.swing.JFrame {
             inqDNI.setText(Integer.toString(datosInquilino.getDni()));
             inqEstado.setText(datosInquilino.getEstadoCivil());
             inqFecha.setText(datosInquilino.getFechaNac());
-            inqTelefono.setText(Integer.toString(datosInquilino.getTel())) ;
-            inqCelular.setText(Integer.toString(datosInquilino.getCelular()));
+            inqTelefono.setText(datosInquilino.getTel()) ;
+            inqCelular.setText(datosInquilino.getCelular());
             inqEmail.setText(datosInquilino.getCorreo());
             inqProfesion.setText(datosInquilino.getProfesion());
-            inqCUIT.setText(Integer.toString(datosInquilino.getCuit()));
+            inqCUIT.setText(datosInquilino.getCuit());
             
             gar1Cliente.setText(datosGarante1.getApellido()+" "+datosGarante1.getNombre());
             gar1Domicilio.setText(datosGarante1.getDireccion());
@@ -1487,11 +1487,11 @@ public class DetallesContrato extends javax.swing.JFrame {
             gar1DNI.setText(Integer.toString(datosGarante1.getDni()));
             gar1Estado.setText(datosGarante1.getEstadoCivil());
             gar1Fecha.setText(datosGarante1.getFechaNac());
-            gar1Telefono.setText(Integer.toString(datosGarante1.getTel())) ;
-            gar1Celular.setText(Integer.toString(datosGarante1.getCelular()));
+            gar1Telefono.setText(datosGarante1.getTel()) ;
+            gar1Celular.setText(datosGarante1.getCelular());
             gar1Email.setText(datosGarante1.getCorreo());
             gar1Profesion.setText(datosGarante1.getProfesion());
-            gar1CUIT.setText(Integer.toString(datosGarante1.getCuit()));
+            gar1CUIT.setText(datosGarante1.getCuit());
             
             gar2Cliente.setText(datosGarante2.getApellido()+" "+datosGarante2.getNombre());
             gar2Domicilio.setText(datosGarante2.getDireccion());
@@ -1500,11 +1500,11 @@ public class DetallesContrato extends javax.swing.JFrame {
             gar2DNI.setText(Integer.toString(datosGarante2.getDni()));
             gar2Estado.setText(datosGarante2.getEstadoCivil());
             gar2Fecha.setText(datosGarante2.getFechaNac());
-            gar2Telefono.setText(Integer.toString(datosGarante2.getTel())) ;
-            gar2Celular.setText(Integer.toString(datosGarante2.getCelular()));
+            gar2Telefono.setText(datosGarante2.getTel()) ;
+            gar2Celular.setText(datosGarante2.getCelular());
             gar2Email.setText(datosGarante2.getCorreo());
             gar2Profesion.setText(datosGarante2.getProfesion());
-            gar2CUIT.setText(Integer.toString(datosGarante2.getCuit()));
+            gar2CUIT.setText(datosGarante2.getCuit());
             
  
             //Cargamos los ID para los Movimientos
@@ -1521,11 +1521,11 @@ public class DetallesContrato extends javax.swing.JFrame {
             lblPropDireccion.setText(datosPropietario.getDireccion());
             lblPropProvincia.setText(datosPropietario.getProvincia());
             lblPropDNI.setText(Integer.toString(datosPropietario.getDni()));
-            lblPropTelefono.setText(Integer.toString(datosPropietario.getTel()));
+            lblPropTelefono.setText(datosPropietario.getTel());
             lblPropEstadoCivil.setText(datosPropietario.getEstadoCivil());
-            lblPropCUIT.setText(Integer.toString(datosPropietario.getCuit()));
+            lblPropCUIT.setText(datosPropietario.getCuit());
             lblPropFecha.setText(datosPropietario.getFechaNac());
-            lblPropCel.setText(Integer.toString(datosPropietario.getCelular()));
+            lblPropCel.setText(datosPropietario.getCelular());
             lblPropEmail.setText(datosPropietario.getCorreo());
             lblPropDGI.setText(datosPropietario.getDgi());
                     

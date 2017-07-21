@@ -27,9 +27,9 @@ public class GestorAltaCliente {
 		pst.setString(3,prop.getApellido());
 		pst.setString(4,prop.getApellidoMaterno());
 		pst.setInt(5,prop.getDni());
-		pst.setInt(6,prop.getCuit());
+		pst.setString(6,prop.getCuit());
 		pst.setString(7,prop.getCorreo());
-		pst.setInt(8, prop.getTel());
+		pst.setString(8, prop.getTel());
 		pst.setString(9,prop.getFechaNac());
 		pst.setString(10,prop.getEstadoCivil());
 		pst.setString(11,prop.getProfesion());
@@ -37,7 +37,7 @@ public class GestorAltaCliente {
 		pst.setString(13,prop.getLocalidad());
 		pst.setString(14,prop.getProvincia());
 		pst.setString(15,prop.getDgi());
-		pst.setInt(16,prop.getCelular());
+		pst.setString(16,prop.getCelular());
 		pst.setString(17, prop.getTipo());
 
 		r=pst.executeUpdate();

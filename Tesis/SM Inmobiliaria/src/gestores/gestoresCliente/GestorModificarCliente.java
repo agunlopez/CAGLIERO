@@ -26,9 +26,9 @@ public class GestorModificarCliente {
 		pst.setString(2,prop.getApellido());
 		pst.setString(3,prop.getApellidoMaterno());
 		pst.setInt(4,prop.getDni());
-		pst.setInt(5,prop.getCuit());
+		pst.setString(5,prop.getCuit());
 		pst.setString(6,prop.getCorreo());
-		pst.setInt(7, prop.getTel());
+		pst.setString(7, prop.getTel());
 		pst.setString(8,prop.getFechaNac());
 		pst.setString(9,prop.getEstadoCivil());
 		pst.setString(10,prop.getProfesion());
@@ -36,7 +36,7 @@ public class GestorModificarCliente {
 		pst.setString(12,prop.getLocalidad());
 		pst.setString(13,prop.getProvincia());
 		pst.setString(14,prop.getDgi());
-		pst.setInt(15,prop.getCelular());
+		pst.setString(15,prop.getCelular());
 		pst.setInt(16,prop.getId());
 		r=pst.executeUpdate();
 

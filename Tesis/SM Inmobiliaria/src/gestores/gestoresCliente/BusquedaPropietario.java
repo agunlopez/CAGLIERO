@@ -35,9 +35,9 @@ public class BusquedaPropietario {
 				prop.setApellidoMaterno(rs.getString("apellidoMaterno"));
 				prop.setNombre(rs.getString("nombre"));
 				prop.setDni(Integer.parseInt(rs.getString("dni")));;
-				prop.setCuit(Integer.parseInt(rs.getString("cuit")));
+				prop.setCuit(rs.getString("cuit"));
 				prop.setCorreo(rs.getString("correo"));
-				prop.setTel(Integer.parseInt(rs.getString("telefono")));
+				prop.setTel(rs.getString("telefono"));
 				prop.setFechaNac(rs.getString("fechaNacimiento"));
 				prop.setEstadoCivil(rs.getString("estadoCivil"));
 				prop.setProfesion(rs.getString("profesion"));
@@ -45,7 +45,7 @@ public class BusquedaPropietario {
 				prop.setLocalidad(rs.getString("ciudad"));
 				prop.setProvincia(rs.getString("provincia"));
 				prop.setDgi(rs.getString("dgi"));
-				prop.setCelular(Integer.parseInt(rs.getString("celular")));
+				prop.setCelular(rs.getString("celular"));
                                 
                                if(rs.getBoolean("habilitado")==true){
                                           listaP.add(prop);  
@@ -85,9 +85,9 @@ public class BusquedaPropietario {
 						prop.setApellidoMaterno(rs.getString("apellidoMaterno"));
 						prop.setNombre(rs.getString("nombre"));
 						prop.setDni(Integer.parseInt(rs.getString("dni")));;
-						prop.setCuit(Integer.parseInt(rs.getString("cuit")));
+						prop.setCuit(rs.getString("cuit"));
 						prop.setCorreo(rs.getString("correo"));
-						prop.setTel(Integer.parseInt(rs.getString("telefono")));
+						prop.setTel(rs.getString("telefono"));
 						prop.setFechaNac(rs.getString("fechaNacimiento"));
 						prop.setEstadoCivil(rs.getString("estadoCivil"));
 						prop.setProfesion(rs.getString("profesion"));
@@ -95,7 +95,7 @@ public class BusquedaPropietario {
 						prop.setLocalidad(rs.getString("ciudad"));
 						prop.setProvincia(rs.getString("provincia"));
 						prop.setDgi(rs.getString("dgi"));
-						prop.setCelular(Integer.parseInt(rs.getString("celular")));
+						prop.setCelular(rs.getString("celular"));
 						
 					}
 					
@@ -127,9 +127,9 @@ public class BusquedaPropietario {
 					prop.setApellidoMaterno(rs.getString("apellidoMaterno"));
 					prop.setNombre(rs.getString("nombre"));
 					prop.setDni(Integer.parseInt(rs.getString("dni")));;
-					prop.setCuit(Integer.parseInt(rs.getString("cuit")));
+					prop.setCuit(rs.getString("cuit"));
 					prop.setCorreo(rs.getString("correo"));
-					prop.setTel(Integer.parseInt(rs.getString("telefono")));
+					prop.setTel(rs.getString("telefono"));
 					prop.setFechaNac(rs.getString("fechaNacimiento"));
 					prop.setEstadoCivil(rs.getString("estadoCivil"));
 					prop.setProfesion(rs.getString("profesion"));
@@ -137,7 +137,7 @@ public class BusquedaPropietario {
 					prop.setLocalidad(rs.getString("ciudad"));
 					prop.setProvincia(rs.getString("provincia"));
 					prop.setDgi(rs.getString("dgi"));
-					prop.setCelular(Integer.parseInt(rs.getString("celular")));
+					prop.setCelular(rs.getString("celular"));
                                         
 					
 				}
@@ -151,48 +151,5 @@ public class BusquedaPropietario {
 	      return prop;
 }
     
-    /**
-    public static ArrayList<Cliente> consultaTablaPropietario2(String apellido){
-		ArrayList<Cliente> listaA=new ArrayList<Cliente>();
-		Cliente prop=null;
-		String ape="%"+apellido+"%";
-		String nom="%"+apellido+"%";
-		
-		ResultSet rs=null;
-                String tipo="Propietario";
-                String sql="SELECT DISTINCT idCliente,nombre,apellido,apellidoMaterno,dni,habilitado,cliente.tipo FROM cliente,inmueble where inmueble.idPropietario=cliente.idCliente or "
-                + "cliente.tipo like  ? and apellido like ? or nombre like ?";
-     //  String sql="SELECT idCliente,nombre,apellido,apellidoMaterno,dni,tipo,habilitado FROM cliente where apellido like ? or nombre like ?";
-	try{
-			PreparedStatement pst=Conexion.getConexionn().prepareStatement(sql);
-                        pst.setString(1, tipo);
-			pst.setString(2,ape);
-			pst.setString(3, nom);
-			rs=pst.executeQuery();
-
-			while(rs.next()){
-				
-				prop=new Cliente();
-				prop.setId(Integer.parseInt(rs.getString("idCliente")));
-				prop.setApellido(rs.getString("apellido"));
-				prop.setNombre(rs.getString("nombre"));
-				prop.setDni(Integer.parseInt(rs.getString("dni")));
-				prop.setApellidoMaterno(rs.getString("apellidoMaterno"));
-                                prop.setTipo(rs.getString("cliente.tipo"));
-
-                           if(rs.getBoolean("habilitado")==true){
-                                          listaA.add(prop);  
-                                        }
-
-
-		       
-			}
-			
-		} catch (SQLException e) {
-			JOptionPane.showMessageDialog(new JDialog(),"Error al consultar");
-		
-	}
-		
-		return listaA;
-	}**/
+   
 }

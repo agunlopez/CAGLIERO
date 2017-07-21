@@ -37,13 +37,6 @@ public class ExcepcionAltaCliente extends Exception {
             throw new ExcepcionAltaCliente("Ingresar el DNI del Cliente");
         }
 
-        if(cuit.equals("")){
-            
-        }else{
-            if(cuit.length()!=11){
-                throw new ExcepcionAltaCliente("El CUIT/CUIL debe tener 11 digitos");
-            }
-        }
         if(fechaNac==null){
             throw new ExcepcionAltaCliente("Ingrese fecha de Nacimiento");
         }

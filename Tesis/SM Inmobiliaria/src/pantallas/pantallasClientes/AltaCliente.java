@@ -48,6 +48,7 @@ public class AltaCliente extends javax.swing.JFrame {
         for(int i=0;i<listaProvincias.size();i++){
             comboProvincia.addItem(listaProvincias.get(i).getProvincias());
         }
+        
     }
 
     /**
@@ -82,13 +83,10 @@ public class AltaCliente extends javax.swing.JFrame {
         apellido = new javax.swing.JTextField();
         direccion = new javax.swing.JTextField();
         dni = new javax.swing.JTextField();
-        telefono = new javax.swing.JTextField();
         profesion = new javax.swing.JTextField();
-        celular = new javax.swing.JTextField();
         apellidoM = new javax.swing.JTextField();
         estadoCivil = new javax.swing.JTextField();
         correo = new javax.swing.JTextField();
-        cuit = new javax.swing.JTextField();
         idPropietario = new javax.swing.JLabel();
         fechaNac = new com.toedter.calendar.JDateChooser();
         comboDgi = new javax.swing.JComboBox<>();
@@ -96,6 +94,9 @@ public class AltaCliente extends javax.swing.JFrame {
         lblTipoCliente = new javax.swing.JLabel();
         comboCiudades = new javax.swing.JComboBox<>();
         comboProvincia = new javax.swing.JComboBox<>();
+        cuit = new javax.swing.JFormattedTextField();
+        telefono = new javax.swing.JFormattedTextField();
+        celular = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Datos del Cliente");
@@ -194,29 +195,6 @@ public class AltaCliente extends javax.swing.JFrame {
             }
         });
 
-        telefono.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                telefonoKeyTyped(evt);
-            }
-        });
-
-        celular.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                celularKeyTyped(evt);
-            }
-        });
-
-        cuit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cuitActionPerformed(evt);
-            }
-        });
-        cuit.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                cuitKeyTyped(evt);
-            }
-        });
-
         idPropietario.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         idPropietario.setText(Integer.toString(x)
         );
@@ -238,6 +216,37 @@ public class AltaCliente extends javax.swing.JFrame {
                 comboProvinciaActionPerformed(evt);
             }
         });
+
+        try {
+            cuit.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##-########-#")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        cuit.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        cuit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cuitActionPerformed(evt);
+            }
+        });
+
+        try {
+            telefono.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(0####)-######")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        telefono.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        telefono.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                telefonoActionPerformed(evt);
+            }
+        });
+
+        try {
+            celular.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("0####-15######")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        celular.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -274,13 +283,13 @@ public class AltaCliente extends javax.swing.JFrame {
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel13)
                                     .addComponent(jLabel15))
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel3Layout.createSequentialGroup()
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(comboDgi, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel3Layout.createSequentialGroup()
                                         .addGap(21, 21, 21)
-                                        .addComponent(celular))))
+                                        .addComponent(celular, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -300,11 +309,12 @@ public class AltaCliente extends javax.swing.JFrame {
                             .addComponent(jLabel16))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cuit, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(apellidoM, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(estadoCivil, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(correo, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(comboCiudades, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(comboCiudades, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(cuit, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(correo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)))
                         .addGap(57, 57, 57))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel1)
@@ -334,13 +344,14 @@ public class AltaCliente extends javax.swing.JFrame {
                     .addComponent(apellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(apellidoM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(direccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(comboCiudades, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel11)
-                    .addComponent(comboProvincia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel9)
+                        .addComponent(direccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(comboCiudades, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel11)
+                        .addComponent(comboProvincia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -355,17 +366,17 @@ public class AltaCliente extends javax.swing.JFrame {
                     .addComponent(jLabel12)
                     .addComponent(jLabel13)
                     .addComponent(jLabel14)
+                    .addComponent(correo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(telefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(celular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(correo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(celular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(jLabel15)
                     .addComponent(jLabel16)
                     .addComponent(profesion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cuit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(comboDgi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(comboDgi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cuit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
                 .addComponent(jLabel17))
         );
@@ -394,7 +405,7 @@ public class AltaCliente extends javax.swing.JFrame {
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 67, Short.MAX_VALUE)))
+                    .addGap(0, 61, Short.MAX_VALUE)))
         );
 
         pack();
@@ -479,63 +490,6 @@ public class AltaCliente extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_apellidoKeyTyped
 
-    private void telefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_telefonoKeyTyped
-
-
-char validar=evt.getKeyChar();
- if(Character.isDigit(validar) ){
-            
-        }else{
-            if(validar==KeyEvent.VK_BACK_SPACE){
-                
-            }else{
-                getToolkit().beep();
-                evt.consume();
-                JOptionPane.showMessageDialog(rootPane, "Ingrese solo numeros");
-            }
-            
-        }
-                // TODO add your handling code here:
-    }//GEN-LAST:event_telefonoKeyTyped
-
-    private void celularKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_celularKeyTyped
-
-        char validar=evt.getKeyChar();
-      if(Character.isDigit(validar) ){
-            
-        }else{
-            if(validar==KeyEvent.VK_BACK_SPACE){
-                
-            }else{
-                getToolkit().beep();
-                evt.consume();
-                JOptionPane.showMessageDialog(rootPane, "Ingrese solo numeros");
-            }
-            
-        }
-        
-        // TODO add your handling code here:
-    }//GEN-LAST:event_celularKeyTyped
-
-
-    private void cuitKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cuitKeyTyped
-
-        char validar=evt.getKeyChar();
-if(Character.isDigit(validar) ){
-            
-        }else{
-            if(validar==KeyEvent.VK_BACK_SPACE){
-                
-            }else{
-                getToolkit().beep();
-                evt.consume();
-                JOptionPane.showMessageDialog(rootPane, "Ingrese solo numeros");
-            }
-            
-        }
-        
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cuitKeyTyped
 
     private void dniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dniActionPerformed
         // TODO add your handling code here:
@@ -560,6 +514,10 @@ if(Character.isDigit(validar) ){
     private void cuitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cuitActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cuitActionPerformed
+
+    private void telefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_telefonoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_telefonoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -726,12 +684,12 @@ if(Character.isDigit(validar) ){
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JTextField apellido;
     public javax.swing.JTextField apellidoM;
-    public javax.swing.JTextField celular;
+    private javax.swing.JFormattedTextField celular;
     private javax.swing.JComboBox<String> comboCiudades;
     private javax.swing.JComboBox<String> comboDgi;
     private javax.swing.JComboBox<String> comboProvincia;
     public javax.swing.JTextField correo;
-    public javax.swing.JTextField cuit;
+    private javax.swing.JFormattedTextField cuit;
     public javax.swing.JTextField direccion;
     public javax.swing.JTextField dni;
     public javax.swing.JTextField estadoCivil;
@@ -760,7 +718,7 @@ if(Character.isDigit(validar) ){
     public static javax.swing.JLabel lblTipoCliente;
     public javax.swing.JTextField nombre;
     public javax.swing.JTextField profesion;
-    public javax.swing.JTextField telefono;
+    private javax.swing.JFormattedTextField telefono;
     // End of variables declaration//GEN-END:variables
 
  int x=GestorAltaCliente.consultaId()+1;
@@ -783,20 +741,20 @@ if(Character.isDigit(validar) ){
      garante.setDireccion(direccion.getText());
      garante.setLocalidad(comboCiudades.getSelectedItem().toString());
      garante.setProvincia(comboProvincia.getSelectedItem().toString());
-     if(telefono.getText().isEmpty() ){
-         garante.setTel(0);
+     if(telefono.getText().equals("     -      ") ){
+         garante.setTel(" ");
      }else{
-         garante.setTel(Integer.parseInt(telefono.getText()));
+         garante.setTel(telefono.getText());
      }
-     if(celular.getText().isEmpty() ){
-         garante.setCelular(0);
+     if(celular.getText().equals("     -15      ") ){
+         garante.setCelular(" ");
      }else{
-         garante.setCelular(Integer.parseInt(celular.getText()));
+         garante.setCelular(celular.getText());
      }										
-     if(cuit.getText().isEmpty()){
-         garante.setCuit(0);
+     if(cuit.getText().equals("  -        - ")){
+         garante.setCuit(" ");
      }else{
-         garante.setCuit(Integer.parseInt(cuit.getText())); 
+         garante.setCuit(cuit.getText()); 
      }
      garante.setDgi((String) comboDgi.getSelectedItem());    
      garante.setCorreo(correo.getText());

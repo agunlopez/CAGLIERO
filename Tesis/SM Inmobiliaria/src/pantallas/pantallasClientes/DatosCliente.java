@@ -23,6 +23,7 @@ import gestores.gestoresCliente.GestorModificarCliente;
 import java.awt.Dimension;
 import static java.awt.Frame.MAXIMIZED_BOTH;
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -85,17 +86,17 @@ public class DatosCliente extends javax.swing.JFrame {
         fechaNac = new javax.swing.JTextField();
         direccion = new javax.swing.JTextField();
         dni = new javax.swing.JTextField();
-        telefono = new javax.swing.JTextField();
         profesion = new javax.swing.JTextField();
         ciudad = new javax.swing.JTextField();
-        celular = new javax.swing.JTextField();
         dgi = new javax.swing.JTextField();
         apellidoM = new javax.swing.JTextField();
         provincia = new javax.swing.JTextField();
         estadoCivil = new javax.swing.JTextField();
         correo = new javax.swing.JTextField();
-        cuit = new javax.swing.JTextField();
         idPropietario = new javax.swing.JLabel();
+        cuit = new javax.swing.JFormattedTextField();
+        celular = new javax.swing.JFormattedTextField();
+        telefono = new javax.swing.JFormattedTextField();
         btnEliminarCliente = new javax.swing.JButton();
         jCheckBox1 = new javax.swing.JCheckBox();
         jPanel2 = new javax.swing.JPanel();
@@ -195,17 +196,11 @@ public class DatosCliente extends javax.swing.JFrame {
         dni.setEditable(false);
         dni.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        telefono.setEditable(false);
-        telefono.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-
         profesion.setEditable(false);
         profesion.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         ciudad.setEditable(false);
         ciudad.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-
-        celular.setEditable(false);
-        celular.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         dgi.setEditable(false);
         dgi.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -222,10 +217,36 @@ public class DatosCliente extends javax.swing.JFrame {
         correo.setEditable(false);
         correo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
+        idPropietario.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
         cuit.setEditable(false);
+        try {
+            cuit.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##-########-#")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
         cuit.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        idPropietario.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        celular.setEditable(false);
+        try {
+            celular.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("0####-15######")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        celular.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        celular.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                celularActionPerformed(evt);
+            }
+        });
+
+        telefono.setEditable(false);
+        try {
+            telefono.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(0####)-######")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        telefono.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -283,28 +304,24 @@ public class DatosCliente extends javax.swing.JFrame {
                                             .addComponent(jLabel15))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(celular)
-                                            .addComponent(dgi))))
+                                            .addComponent(dgi)
+                                            .addComponent(celular, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE))))
                                 .addGap(35, 35, 35)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel11)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel14)
+                                    .addComponent(jLabel16))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cuit)
+                                    .addComponent(apellidoM)
+                                    .addComponent(estadoCivil)
                                     .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addComponent(jLabel16)
-                                        .addGap(19, 19, 19)
-                                        .addComponent(cuit))
-                                    .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel4)
-                                            .addComponent(jLabel11)
-                                            .addComponent(jLabel7)
-                                            .addComponent(jLabel14))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(apellidoM)
-                                            .addComponent(estadoCivil)
-                                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                                .addComponent(provincia, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(0, 0, Short.MAX_VALUE))
-                                            .addComponent(correo))))))
+                                        .addComponent(provincia, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addComponent(correo))))
                         .addGap(81, 81, 81))))
         );
         jPanel3Layout.setVerticalGroup(
@@ -343,9 +360,9 @@ public class DatosCliente extends javax.swing.JFrame {
                     .addComponent(jLabel12)
                     .addComponent(jLabel13)
                     .addComponent(jLabel14)
-                    .addComponent(telefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(correo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(celular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(correo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(telefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
@@ -446,9 +463,9 @@ public class DatosCliente extends javax.swing.JFrame {
         Cliente prop=new Cliente();     
         prop.setApellido(apellido.getText());
         prop.setApellidoMaterno(apellidoM.getText());
-        prop.setCelular(Integer.parseInt(celular.getText()));
+        prop.setCelular(celular.getText());
         prop.setCorreo(correo.getText());
-        prop.setCuit(Integer.parseInt(cuit.getText()));
+        prop.setCuit(cuit.getText());
         prop.setDgi(dgi.getText());
         prop.setDireccion(direccion.getText());
         prop.setDni(Integer.parseInt(dni.getText()));
@@ -459,7 +476,7 @@ public class DatosCliente extends javax.swing.JFrame {
         prop.setNombre(nombre.getText());
         prop.setProfesion(profesion.getText());
         prop.setProvincia(provincia.getText());
-        prop.setTel(Integer.parseInt(telefono.getText()));
+        prop.setTel(telefono.getText());
         
         GestorModificarCliente gest=new GestorModificarCliente();
         try {
@@ -552,6 +569,13 @@ public class DatosCliente extends javax.swing.JFrame {
             provincia.setEditable(true);
             profesion.setEditable(true);
             telefono.setEditable(true);
+           /** try {
+                cuit.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##-########-#")));
+                celular.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-15######")));
+                telefono.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-######")));
+            } catch (ParseException ex) {
+                Logger.getLogger(DatosCliente.class.getName()).log(Level.SEVERE, null, ex);
+            }**/
             jButton2.setText("Guardar");
         }else{
             apellido.setEditable(false);
@@ -618,6 +642,10 @@ public class DatosCliente extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tablaContratosClienteMouseClicked
 
+    private void celularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_celularActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_celularActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -672,10 +700,10 @@ public class DatosCliente extends javax.swing.JFrame {
     public javax.swing.JTextField apellido;
     public javax.swing.JTextField apellidoM;
     public static javax.swing.JButton btnEliminarCliente;
-    public javax.swing.JTextField celular;
+    public static javax.swing.JFormattedTextField celular;
     public javax.swing.JTextField ciudad;
     public javax.swing.JTextField correo;
-    public javax.swing.JTextField cuit;
+    public static javax.swing.JFormattedTextField cuit;
     public javax.swing.JTextField dgi;
     public javax.swing.JTextField direccion;
     public javax.swing.JTextField dni;
@@ -708,7 +736,7 @@ public class DatosCliente extends javax.swing.JFrame {
     public javax.swing.JTextField profesion;
     public javax.swing.JTextField provincia;
     public static javax.swing.JTable tablaContratosCliente;
-    public javax.swing.JTextField telefono;
+    public static javax.swing.JFormattedTextField telefono;
     // End of variables declaration//GEN-END:variables
 
  

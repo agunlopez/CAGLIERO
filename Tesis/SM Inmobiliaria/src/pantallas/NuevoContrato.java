@@ -1381,7 +1381,7 @@ public static void CrearContrato(Contrato contrato){
             String estadoCivil=datosInquilino.getEstadoCivil();
             String apellidoMaterno=datosInquilino.getApellidoMaterno();
             String profesion=datosInquilino.getProfesion();
-            String telefono=Integer.toString(datosInquilino.getTel());
+            String telefono=datosInquilino.getTel();
             String ciudadInm=datosIn.getLocalidad()+" de la provincia de "+datosIn.getProvincia();
             String domicilioInm=datosIn.getCalle();
             int dniInq=contrato.getInquilino().getDni();

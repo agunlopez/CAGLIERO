@@ -23,9 +23,9 @@ public class Cliente {
 	private String dgi;
 	private int id;
 	private int dni;
-	private int cuit;
-	private int tel;
-	private int celular;
+	private String cuit;
+	private String tel;
+	private String celular;
 	private String tipo;
         private String rolContrato;
 
@@ -35,6 +35,30 @@ public class Cliente {
 
     public void setRolContrato(String rolContrato) {
         this.rolContrato = rolContrato;
+    }
+
+    public String getCuit() {
+        return cuit;
+    }
+
+    public void setCuit(String cuit) {
+        this.cuit = cuit;
+    }
+
+    public String getTel() {
+        return tel;
+    }
+
+    public void setTel(String tel) {
+        this.tel = tel;
+    }
+
+    public String getCelular() {
+        return celular;
+    }
+
+    public void setCelular(String celular) {
+        this.celular = celular;
     }
         
         
@@ -113,29 +137,12 @@ public class Cliente {
 	public void setDni(int dni) {
 		this.dni = dni;
 	}
-	public int getCuit() {
-		return cuit;
-	}
-	public void setCuit(int cuit) {
-		this.cuit = cuit;
-	}
-	public int getTel() {
-		return tel;
-	}
-	public void setTel(int tel) {
-		this.tel = tel;
-	}
+
 	public String getFechaNac() {
 		return fechaNac;
 	}
 	public void setFechaNac(String fechaNac) {
 		this.fechaNac = fechaNac;
-	}
-	public int getCelular() {
-		return celular;
-	}
-	public void setCelular(int celular) {
-		this.celular = celular;
 	}
 	public String getTipo() {
 		return tipo;

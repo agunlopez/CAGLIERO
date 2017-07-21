@@ -287,10 +287,10 @@ public class PantallaBusquedaCliente extends javax.swing.JFrame {
 				DatosCliente datosP=new DatosCliente();
 				datosP.apellido.setText(prop.getApellido());
 				datosP.apellidoM.setText(prop.getApellidoMaterno());
-				datosP.celular.setText(Integer.toString(prop.getCelular()));
+				datosP.celular.setText(prop.getCelular());
 				datosP.ciudad.setText(prop.getLocalidad());
 				datosP.correo.setText(prop.getCorreo());
-				datosP.cuit.setText(Integer.toString(prop.getCuit()));
+				datosP.cuit.setText(prop.getCuit());
 				datosP.dgi.setText(prop.getDgi());
 				datosP.direccion.setText(prop.getDireccion());
 				datosP.dni.setText(Integer.toString(prop.getDni()));
@@ -300,7 +300,7 @@ public class PantallaBusquedaCliente extends javax.swing.JFrame {
 				datosP.nombre.setText(prop.getNombre());
 				datosP.profesion.setText(prop.getProfesion());
 				datosP.provincia.setText(prop.getProvincia());
-				datosP.telefono.setText(Integer.toString(prop.getTel()));
+				datosP.telefono.setText(prop.getTel());
 				
                                 datosP.setSize(alto/2, ancho/2);
                                 datosP.pack();
