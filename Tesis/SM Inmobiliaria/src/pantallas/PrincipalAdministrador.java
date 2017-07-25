@@ -1470,39 +1470,44 @@ x=GestoresContrato.consultaIdContrato()+1;
         // TODO add your handling code here:
         
         if(evt.getClickCount()==2){
-            int row = tablaPropietarios.getSelectedRow();
-				int id=Integer.parseInt(tablaPropietarios.getValueAt(row, 0).toString());
-				
-				Cliente prop=BusquedaPropietario.busquedaDatos(id);
-				DatosCliente datosP=new DatosCliente();
-				datosP.apellido.setText(prop.getApellido());
-				datosP.apellidoM.setText(prop.getApellidoMaterno());
-				datosP.celular.setText(prop.getCelular());
-				datosP.ciudad.setText(prop.getLocalidad());
-				datosP.correo.setText(prop.getCorreo());
-				datosP.cuit.setText(prop.getCuit());
-				datosP.dgi.setText(prop.getDgi());
-				datosP.direccion.setText(prop.getDireccion());
-				datosP.dni.setText(Integer.toString(prop.getDni()));
-				datosP.estadoCivil.setText(prop.getEstadoCivil());
-				datosP.fechaNac.setText(prop.getFechaNac());
-				datosP.idPropietario.setText(Integer.toString(prop.getId()));
-				datosP.nombre.setText(prop.getNombre());
-				datosP.profesion.setText(prop.getProfesion());
-				datosP.provincia.setText(prop.getProvincia());
-				datosP.telefono.setText(prop.getTel());
-				
-                                datosP.setSize(alto/2, ancho/2);
-                                datosP.pack();
-                                datosP.setLocationRelativeTo(null);
-                                
-                                if(InicioSesion.usuarioEnSesion.getTipo().equals("EMPLEADO")){
-                                    datosP.btnEliminarCliente.setEnabled(false);
-                                }
-                                 ArrayList<Contrato> listaContratos=BusquedaCliente.contratosDelCliente(prop.getId());
-        ModeloTablaContratosDelCliente modelo=new ModeloTablaContratosDelCliente(listaContratos);
-        DatosCliente.tablaContratosCliente.setModel(modelo);
-				datosP.setVisible(true);
+            try {
+                int row = tablaPropietarios.getSelectedRow();
+                int id=Integer.parseInt(tablaPropietarios.getValueAt(row, 0).toString());
+                
+                Cliente prop=BusquedaPropietario.busquedaDatos(id);
+                DatosCliente datosP=new DatosCliente();
+                datosP.apellido.setText(prop.getApellido());
+                datosP.apellidoM.setText(prop.getApellidoMaterno());
+                datosP.celular.setText(prop.getCelular());
+                datosP.ciudad.setText(prop.getLocalidad());
+                datosP.correo.setText(prop.getCorreo());
+                datosP.cuit.setText(prop.getCuit());
+                datosP.dgi.setText(prop.getDgi());
+                datosP.direccion.setText(prop.getDireccion());
+                datosP.dni.setText(Integer.toString(prop.getDni()));
+                datosP.estadoCivil.setText(prop.getEstadoCivil());
+                SimpleDateFormat formatoDelTexto = new SimpleDateFormat("dd/MM/yyyy");
+                Date dato = formatoDelTexto.parse(prop.getFechaNac());
+                datosP.fechaNac.setDate(dato);				datosP.idPropietario.setText(Integer.toString(prop.getId()));
+                datosP.nombre.setText(prop.getNombre());
+                datosP.profesion.setText(prop.getProfesion());
+                datosP.provincia.setText(prop.getProvincia());
+                datosP.telefono.setText(prop.getTel());
+                
+                datosP.setSize(alto/2, ancho/2);
+                datosP.pack();
+                datosP.setLocationRelativeTo(null);
+                
+                if(InicioSesion.usuarioEnSesion.getTipo().equals("EMPLEADO")){
+                    datosP.btnEliminarCliente.setEnabled(false);
+                }
+                ArrayList<Contrato> listaContratos=BusquedaCliente.contratosDelCliente(prop.getId());
+                ModeloTablaContratosDelCliente modelo=new ModeloTablaContratosDelCliente(listaContratos);
+                DatosCliente.tablaContratosCliente.setModel(modelo);
+                datosP.setVisible(true);
+            } catch (ParseException ex) {
+                Logger.getLogger(PrincipalAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+            }
             
         }
         
@@ -1513,79 +1518,93 @@ x=GestoresContrato.consultaIdContrato()+1;
     private void tablaInquilinosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaInquilinosMouseClicked
 
  if(evt.getClickCount()==2){
-            int row = tablaInquilinos.getSelectedRow();
-				int id=Integer.parseInt(tablaInquilinos.getValueAt(row, 0).toString());
-				
-				Cliente prop=BusquedaPropietario.busquedaDatos(id);
-				DatosCliente datosP=new DatosCliente();
-				datosP.apellido.setText(prop.getApellido());
-				datosP.apellidoM.setText(prop.getApellidoMaterno());
-				datosP.celular.setText(prop.getCelular());
-				datosP.ciudad.setText(prop.getLocalidad());
-				datosP.correo.setText(prop.getCorreo());
-				datosP.cuit.setText(prop.getCuit());
-				datosP.dgi.setText(prop.getDgi());
-				datosP.direccion.setText(prop.getDireccion());
-				datosP.dni.setText(Integer.toString(prop.getDni()));
-				datosP.estadoCivil.setText(prop.getEstadoCivil());
-				datosP.fechaNac.setText(prop.getFechaNac());
-				datosP.idPropietario.setText(Integer.toString(prop.getId()));
-				datosP.nombre.setText(prop.getNombre());
-				datosP.profesion.setText(prop.getProfesion());
-				datosP.provincia.setText(prop.getProvincia());
-				datosP.telefono.setText(prop.getTel());
-				
-                                datosP.setSize(alto/2, ancho/2);
-                                datosP.pack();
-                                datosP.setLocationRelativeTo(null);
-                                if(InicioSesion.usuarioEnSesion.getTipo().equals("EMPLEADO")){
-                                    datosP.btnEliminarCliente.setEnabled(false);
-                                }
-                                 ArrayList<Contrato> listaContratos=BusquedaCliente.contratosDelCliente(prop.getId());
-        ModeloTablaContratosDelCliente modelo=new ModeloTablaContratosDelCliente(listaContratos);
-        DatosCliente.tablaContratosCliente.setModel(modelo);
-				datosP.setVisible(true);
+     try {
+         int row = tablaInquilinos.getSelectedRow();
+         int id=Integer.parseInt(tablaInquilinos.getValueAt(row, 0).toString());
+         
+         Cliente prop=BusquedaPropietario.busquedaDatos(id);
+         DatosCliente datosP=new DatosCliente();
+         datosP.apellido.setText(prop.getApellido());
+         datosP.apellidoM.setText(prop.getApellidoMaterno());
+         datosP.celular.setText(prop.getCelular());
+         datosP.ciudad.setText(prop.getLocalidad());
+         datosP.correo.setText(prop.getCorreo());
+         datosP.cuit.setText(prop.getCuit());
+         datosP.dgi.setText(prop.getDgi());
+         datosP.direccion.setText(prop.getDireccion());
+         datosP.dni.setText(Integer.toString(prop.getDni()));
+         datosP.estadoCivil.setText(prop.getEstadoCivil());
+         SimpleDateFormat formatoDelTexto = new SimpleDateFormat("dd/MM/yyyy");       
+         Date dato = formatoDelTexto.parse(prop.getFechaNac());
+         datosP.fechaNac.setDate(dato);
+         datosP.idPropietario.setText(Integer.toString(prop.getId()));
+         datosP.nombre.setText(prop.getNombre());
+         datosP.profesion.setText(prop.getProfesion());
+         datosP.provincia.setText(prop.getProvincia());
+         datosP.telefono.setText(prop.getTel());
+         
+         datosP.setSize(alto/2, ancho/2);
+         datosP.pack();
+         datosP.setLocationRelativeTo(null);
+         if(InicioSesion.usuarioEnSesion.getTipo().equals("EMPLEADO")){
+             datosP.btnEliminarCliente.setEnabled(false);
+         }
+         ArrayList<Contrato> listaContratos=BusquedaCliente.contratosDelCliente(prop.getId());
+         ModeloTablaContratosDelCliente modelo=new ModeloTablaContratosDelCliente(listaContratos);
+         DatosCliente.tablaContratosCliente.setModel(modelo);
+         datosP.setVisible(true);
+     } // TODO add your handling code here:
+     catch (ParseException ex) {
+         Logger.getLogger(PrincipalAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+     }
             
-        }        // TODO add your handling code here:
+        }
     }//GEN-LAST:event_tablaInquilinosMouseClicked
 
     private void tablaGarantesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaGarantesMouseClicked
 
  if(evt.getClickCount()==2){
-            int row = tablaGarantes.getSelectedRow();
-				int id=Integer.parseInt(tablaGarantes.getValueAt(row, 0).toString());
-				
-				Cliente prop=BusquedaPropietario.busquedaDatos(id);
-				DatosCliente datosP=new DatosCliente();
-				datosP.apellido.setText(prop.getApellido());
-				datosP.apellidoM.setText(prop.getApellidoMaterno());
-				datosP.celular.setText(prop.getCelular());
-				datosP.ciudad.setText(prop.getLocalidad());
-				datosP.correo.setText(prop.getCorreo());
-				datosP.cuit.setText(prop.getCuit());
-				datosP.dgi.setText(prop.getDgi());
-				datosP.direccion.setText(prop.getDireccion());
-				datosP.dni.setText(Integer.toString(prop.getDni()));
-				datosP.estadoCivil.setText(prop.getEstadoCivil());
-				datosP.fechaNac.setText(prop.getFechaNac());
-				datosP.idPropietario.setText(Integer.toString(prop.getId()));
-				datosP.nombre.setText(prop.getNombre());
-				datosP.profesion.setText(prop.getProfesion());
-				datosP.provincia.setText(prop.getProvincia());
-				datosP.telefono.setText(prop.getTel());
-				
-                                if(InicioSesion.usuarioEnSesion.getTipo().equals("EMPLEADO")){
-                                    datosP.btnEliminarCliente.setEnabled(false);
-                                }
-                                 ArrayList<Contrato> listaContratos=BusquedaCliente.contratosDelCliente(prop.getId());
-        ModeloTablaContratosDelCliente modelo=new ModeloTablaContratosDelCliente(listaContratos);
-        DatosCliente.tablaContratosCliente.setModel(modelo);
-                                datosP.setSize(alto/2, ancho/2);
-                                datosP.pack();
-                                datosP.setLocationRelativeTo(null);
-				datosP.setVisible(true);
+     try {
+         int row = tablaGarantes.getSelectedRow();
+         int id=Integer.parseInt(tablaGarantes.getValueAt(row, 0).toString());
+         
+         Cliente prop=BusquedaPropietario.busquedaDatos(id);
+         DatosCliente datosP=new DatosCliente();
+         datosP.apellido.setText(prop.getApellido());
+         datosP.apellidoM.setText(prop.getApellidoMaterno());
+         datosP.celular.setText(prop.getCelular());
+         datosP.ciudad.setText(prop.getLocalidad());
+         datosP.correo.setText(prop.getCorreo());
+         datosP.cuit.setText(prop.getCuit());
+         datosP.dgi.setText(prop.getDgi());
+         datosP.direccion.setText(prop.getDireccion());
+         datosP.dni.setText(Integer.toString(prop.getDni()));
+         datosP.estadoCivil.setText(prop.getEstadoCivil());         
+         SimpleDateFormat formatoDelTexto = new SimpleDateFormat("dd/MM/yyyy");       
+         Date dato = formatoDelTexto.parse(prop.getFechaNac());       
+         datosP.fechaNac.setDate(dato);
+         datosP.idPropietario.setText(Integer.toString(prop.getId()));
+         datosP.nombre.setText(prop.getNombre());
+         datosP.profesion.setText(prop.getProfesion());
+         datosP.provincia.setText(prop.getProvincia());
+         datosP.telefono.setText(prop.getTel());
+         
+         if(InicioSesion.usuarioEnSesion.getTipo().equals("EMPLEADO")){
+             datosP.btnEliminarCliente.setEnabled(false);
+         }
+         ArrayList<Contrato> listaContratos=BusquedaCliente.contratosDelCliente(prop.getId());
+         ModeloTablaContratosDelCliente modelo=new ModeloTablaContratosDelCliente(listaContratos);
+         DatosCliente.tablaContratosCliente.setModel(modelo);
+         datosP.setSize(alto/2, ancho/2);
+         datosP.pack();
+         datosP.setLocationRelativeTo(null);
+         datosP.setVisible(true);
+     } // TODO add your handling code here:
+     catch (ParseException ex) {
+         Logger.getLogger(PrincipalAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+     }
             
-        }        // TODO add your handling code here:
+        }
     }//GEN-LAST:event_tablaGarantesMouseClicked
 
     private void formWindowIconified(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowIconified
@@ -2011,7 +2030,7 @@ x=GestoresContrato.consultaIdContrato()+1;
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
 
-        JFileChooser copiaSeguridad=new JFileChooser("C:\\Users\\Nahuel\\Desktop\\SM Inmobiliaria\\src\\BackUp");
+       JFileChooser copiaSeguridad=new JFileChooser("C:\\Users\\Nahuel\\Desktop\\SM Inmobiliaria\\src\\BackUp");
        copiaSeguridad.setDialogTitle("Seleccione donde desea guardar la Copia de Seguridad");
        copiaSeguridad.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY); 
        copiaSeguridad.setFileFilter(new FileNameExtensionFilter("todos los archivos *.sql", "sql","SQL"));
@@ -2198,7 +2217,7 @@ AltaCliente altaPropietario=new AltaCliente();
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
 
-        this.setCursor(Cursor.WAIT_CURSOR);
+        
         try{
             conexion.ConexionReporte con=new conexion.ConexionReporte();
 

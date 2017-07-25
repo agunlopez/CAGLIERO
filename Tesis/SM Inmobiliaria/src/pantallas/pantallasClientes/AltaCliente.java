@@ -230,7 +230,7 @@ public class AltaCliente extends javax.swing.JFrame {
         });
 
         try {
-            telefono.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(0####)-######")));
+            telefono.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(0###*)-######*")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -240,13 +240,28 @@ public class AltaCliente extends javax.swing.JFrame {
                 telefonoActionPerformed(evt);
             }
         });
+        telefono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                telefonoKeyTyped(evt);
+            }
+        });
 
         try {
-            celular.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("0####-15######")));
+            celular.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("0###*-15######*")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
         celular.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        celular.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                celularActionPerformed(evt);
+            }
+        });
+        celular.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                celularKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -519,6 +534,46 @@ public class AltaCliente extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_telefonoActionPerformed
 
+    private void celularKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_celularKeyTyped
+
+        char validar=evt.getKeyChar();
+        if(Character.isDigit(validar) ){
+            
+        }else{
+            if(validar==KeyEvent.VK_BACK_SPACE){
+                
+            }else{
+                getToolkit().beep();
+                evt.consume();
+                //JOptionPane.showMessageDialog(rootPane, "Ingrese solo numeros");
+            }
+            
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_celularKeyTyped
+
+    private void celularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_celularActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_celularActionPerformed
+
+    private void telefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_telefonoKeyTyped
+
+        char validar=evt.getKeyChar();
+        if(Character.isDigit(validar) ){
+            
+        }else{
+            if(validar==KeyEvent.VK_BACK_SPACE){
+                
+            }else{
+                getToolkit().beep();
+                evt.consume();
+                //JOptionPane.showMessageDialog(rootPane, "Ingrese solo numeros");
+            }
+            
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_telefonoKeyTyped
+
     /**
      * @param args the command line arguments
      */
@@ -741,12 +796,12 @@ public class AltaCliente extends javax.swing.JFrame {
      garante.setDireccion(direccion.getText());
      garante.setLocalidad(comboCiudades.getSelectedItem().toString());
      garante.setProvincia(comboProvincia.getSelectedItem().toString());
-     if(telefono.getText().equals("     -      ") ){
+     if(telefono.getText().equals("(0    )-       ") ){
          garante.setTel(" ");
      }else{
          garante.setTel(telefono.getText());
      }
-     if(celular.getText().equals("     -15      ") ){
+     if(celular.getText().equals("0    -15       ") ){
          garante.setCelular(" ");
      }else{
          garante.setCelular(celular.getText());

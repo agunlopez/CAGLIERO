@@ -5,6 +5,7 @@
  */
 package pantallas.pantallasClientes;
 
+import Excepciones.ExcepcionAltaCliente;
 import Renders.RenderLiquidacion;
 import Usuarios.InicioSesion;
 import pantallas.*;
@@ -22,9 +23,11 @@ import gestores.gestoresCliente.GestorEliminarCliente;
 import gestores.gestoresCliente.GestorModificarCliente;
 import java.awt.Dimension;
 import static java.awt.Frame.MAXIMIZED_BOTH;
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JDialog;
@@ -83,7 +86,6 @@ public class DatosCliente extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
         nombre = new javax.swing.JTextField();
         apellido = new javax.swing.JTextField();
-        fechaNac = new javax.swing.JTextField();
         direccion = new javax.swing.JTextField();
         dni = new javax.swing.JTextField();
         profesion = new javax.swing.JTextField();
@@ -97,6 +99,7 @@ public class DatosCliente extends javax.swing.JFrame {
         cuit = new javax.swing.JFormattedTextField();
         celular = new javax.swing.JFormattedTextField();
         telefono = new javax.swing.JFormattedTextField();
+        fechaNac = new com.toedter.calendar.JDateChooser();
         btnEliminarCliente = new javax.swing.JButton();
         jCheckBox1 = new javax.swing.JCheckBox();
         jPanel2 = new javax.swing.JPanel();
@@ -182,9 +185,6 @@ public class DatosCliente extends javax.swing.JFrame {
             }
         });
 
-        fechaNac.setEditable(false);
-        fechaNac.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-
         direccion.setEditable(false);
         direccion.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         direccion.addActionListener(new java.awt.event.ActionListener() {
@@ -229,7 +229,7 @@ public class DatosCliente extends javax.swing.JFrame {
 
         celular.setEditable(false);
         try {
-            celular.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("0####-15######")));
+            celular.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("0###*-15######*")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -239,14 +239,27 @@ public class DatosCliente extends javax.swing.JFrame {
                 celularActionPerformed(evt);
             }
         });
+        celular.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                celularKeyTyped(evt);
+            }
+        });
 
         telefono.setEditable(false);
         try {
-            telefono.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(0####)-######")));
+            telefono.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(0###*)-######*")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
         telefono.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        telefono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                telefonoKeyTyped(evt);
+            }
+        });
+
+        fechaNac.setDateFormatString("dd/MM/yyyy");
+        fechaNac.setEnabled(false);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -261,7 +274,7 @@ public class DatosCliente extends javax.swing.JFrame {
                         .addComponent(idPropietario)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel2)
@@ -277,11 +290,11 @@ public class DatosCliente extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(profesion)
-                                    .addComponent(telefono)))
+                                    .addComponent(telefono, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(fechaNac, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(fechaNac, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
@@ -332,29 +345,31 @@ public class DatosCliente extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(idPropietario))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4)
-                    .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(apellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(apellidoM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(jLabel10)
-                    .addComponent(jLabel11)
-                    .addComponent(direccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ciudad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(provincia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(dni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6)
-                    .addComponent(fechaNac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7)
-                    .addComponent(estadoCivil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4)
+                            .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(apellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(apellidoM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel10)
+                            .addComponent(jLabel11)
+                            .addComponent(direccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ciudad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(provincia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(dni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel7)
+                            .addComponent(estadoCivil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(fechaNac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
@@ -459,24 +474,44 @@ public class DatosCliente extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 
-        if(jCheckBox1.isSelected()){                  
+        if(jCheckBox1.isSelected()){         
+            try {  
+                ExcepcionAltaCliente.validarDatos(nombre.getText(), apellido.getText(), direccion.getText(), dni.getText(),provincia.getText(),ciudad.getText(),cuit.getText(),fechaNac.getDate());
+            
+
         Cliente prop=new Cliente();     
         prop.setApellido(apellido.getText());
         prop.setApellidoMaterno(apellidoM.getText());
-        prop.setCelular(celular.getText());
         prop.setCorreo(correo.getText());
-        prop.setCuit(cuit.getText());
         prop.setDgi(dgi.getText());
         prop.setDireccion(direccion.getText());
         prop.setDni(Integer.parseInt(dni.getText()));
         prop.setEstadoCivil(estadoCivil.getText());
-        prop.setFechaNac(fechaNac.getText());
+        String dia=Integer.toString( fechaNac.getCalendar().get(Calendar.DAY_OF_MONTH));
+     String mes=Integer.toString(fechaNac.getCalendar().get(Calendar.MONTH)+1);
+     String año=Integer.toString(fechaNac.getCalendar().get(Calendar.YEAR));
+     String fechaNacimiento=dia+"/"+mes+"/"+año;
+     prop.setFechaNac(fechaNacimiento);
         prop.setId(Integer.parseInt(idPropietario.getText()));
         prop.setLocalidad(ciudad.getText());
         prop.setNombre(nombre.getText());
         prop.setProfesion(profesion.getText());
         prop.setProvincia(provincia.getText());
-        prop.setTel(telefono.getText());
+        if(telefono.getText().equals("(0    )-       ") ){
+         prop.setTel(" ");
+     }else{
+         prop.setTel(telefono.getText());
+     }
+     if(celular.getText().equals("0    -15       ") ){
+         prop.setCelular(" ");
+     }else{
+         prop.setCelular(celular.getText());
+     }										
+     if(cuit.getText().equals("  -        - ")){
+         prop.setCuit(" ");
+     }else{
+         prop.setCuit(cuit.getText()); 
+     }
         
         GestorModificarCliente gest=new GestorModificarCliente();
         try {
@@ -495,7 +530,10 @@ public class DatosCliente extends javax.swing.JFrame {
             } catch (IOException ex) {
                 Logger.getLogger(DatosCliente.class.getName()).log(Level.SEVERE, null, ex);
             }
-        dispose();				        
+        dispose();		
+        } catch (ExcepcionAltaCliente ex) {
+                Logger.getLogger(DatosCliente.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }else{
             dispose();
         }
@@ -556,7 +594,7 @@ public class DatosCliente extends javax.swing.JFrame {
         if(jCheckBox1.isSelected()){
             apellido.setEditable(true);
             direccion.setEditable(true);
-            fechaNac.setEditable(true);
+            fechaNac.setEnabled(true);
             estadoCivil.setEditable(true);
             nombre.setEditable(true);
             apellidoM.setEditable(true);
@@ -569,18 +607,11 @@ public class DatosCliente extends javax.swing.JFrame {
             provincia.setEditable(true);
             profesion.setEditable(true);
             telefono.setEditable(true);
-           /** try {
-                cuit.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##-########-#")));
-                celular.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-15######")));
-                telefono.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-######")));
-            } catch (ParseException ex) {
-                Logger.getLogger(DatosCliente.class.getName()).log(Level.SEVERE, null, ex);
-            }**/
             jButton2.setText("Guardar");
         }else{
             apellido.setEditable(false);
             direccion.setEditable(false);
-            fechaNac.setEditable(false);
+            fechaNac.setEnabled(false);
             estadoCivil.setEditable(false);
             nombre.setEditable(false);
             apellidoM.setEditable(false);
@@ -646,6 +677,39 @@ public class DatosCliente extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_celularActionPerformed
 
+    private void telefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_telefonoKeyTyped
+char validar=evt.getKeyChar();
+        if(Character.isDigit(validar) ){
+            
+        }else{
+            if(validar==KeyEvent.VK_BACK_SPACE){
+                
+            }else{
+                getToolkit().beep();
+                evt.consume();
+                //JOptionPane.showMessageDialog(rootPane, "Ingrese solo numeros");
+            }
+            
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_telefonoKeyTyped
+
+    private void celularKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_celularKeyTyped
+
+char validar=evt.getKeyChar();
+        if(Character.isDigit(validar) ){
+            
+        }else{
+            if(validar==KeyEvent.VK_BACK_SPACE){
+                
+            }else{
+                getToolkit().beep();
+                evt.consume();
+                //JOptionPane.showMessageDialog(rootPane, "Ingrese solo numeros");
+            }
+            
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_celularKeyTyped
+
     /**
      * @param args the command line arguments
      */
@@ -708,7 +772,7 @@ public class DatosCliente extends javax.swing.JFrame {
     public javax.swing.JTextField direccion;
     public javax.swing.JTextField dni;
     public javax.swing.JTextField estadoCivil;
-    public javax.swing.JTextField fechaNac;
+    public static com.toedter.calendar.JDateChooser fechaNac;
     public javax.swing.JLabel idPropietario;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;

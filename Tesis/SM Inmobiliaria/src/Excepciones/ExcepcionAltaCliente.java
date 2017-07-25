@@ -43,6 +43,13 @@ public class ExcepcionAltaCliente extends Exception {
         if(dni.length()<8 || dni.length()>8){
             throw new ExcepcionAltaCliente("El DNI debe ser de 8 digitos ");
         }
+        if(cuit.equals("")){
+            
+        }else{
+            if(cuit.length()!=13){
+                throw new ExcepcionAltaCliente("El CUIT debe ser de 11 digitos ");
+            }
+        }
         
 
     }
