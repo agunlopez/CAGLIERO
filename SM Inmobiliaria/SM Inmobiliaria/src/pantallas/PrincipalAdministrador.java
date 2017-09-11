@@ -263,7 +263,7 @@ public class PrincipalAdministrador extends javax.swing.JFrame  {
             }
         });
 
-        jPanel12.setBackground(java.awt.Color.yellow);
+        jPanel12.setBackground(java.awt.Color.red);
         jPanel12.setPreferredSize(new java.awt.Dimension(1012, 50));
 
         btnCrearInmueble.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
